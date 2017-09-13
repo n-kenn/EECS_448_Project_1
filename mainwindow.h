@@ -35,6 +35,18 @@ private slots:
 
     void on_btnReturnToStart_clicked();
 
+    void on_btnListAttendanceBack_clicked();
+
+    void on_btnListAttendanceNext_clicked();
+
+    void on_btnAddAttendanceBack_clicked();
+
+    void on_btnAddAttendanceSave_clicked();
+
+    void on_btnViewAttendanceBack_clicked();
+
+    void on_btnViewAttendanceReturn_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
