@@ -4,6 +4,8 @@
 
 #include <vector>
 
+using namespace std;
+
 class Event {
 public:
   Event();
