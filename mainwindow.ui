@@ -851,7 +851,7 @@
         <item row="1" column="0">
          <layout class="QGridLayout" name="gridLayout_4">
           <item row="1" column="6">
-           <widget class="QPushButton" name="pushButton_16">
+           <widget class="QPushButton" name="btnViewAttendanceQuit">
             <property name="text">
              <string>Quit</string>
             </property>

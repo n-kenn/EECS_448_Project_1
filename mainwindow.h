@@ -47,6 +47,8 @@ private slots:
 
     void on_btnViewAttendanceReturn_clicked();
 
+    void on_btnViewAttendanceQuit_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

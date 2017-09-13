@@ -49,7 +49,7 @@ void MainWindow::on_btnNewTimeToggle_clicked()
 
 void MainWindow::on_btnExit_clicked()
 {
-
+    QCoreApplication::quit();
 }
 
 void MainWindow::on_btnReturnToStart_clicked()
@@ -90,4 +90,9 @@ void MainWindow::on_btnViewAttendanceBack_clicked()
 void MainWindow::on_btnViewAttendanceReturn_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->pageStart);
+}
+
+void MainWindow::on_btnViewAttendanceQuit_clicked()
+{
+    QCoreApplication::quit();
 }
