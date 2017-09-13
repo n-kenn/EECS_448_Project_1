@@ -1,7 +1,15 @@
 #include event.h
 
 Event::Event(const string& name, const string& description):
-  this->name(%name), this->description(&description)
+  this->name(&name), this->description(&description)
+}
+
+~Event::Event() {
+  delete this.name;
+  delete this.description;
+  delete this.date;
+  delete this.slots;
+  delete this.attendees;
 }
 
 Event::setName(const string& name) {
@@ -12,11 +20,11 @@ Event::getName() {
   return this->name;
 }
 
-vector<string> Event::getSlots() {
+std::vector<string> Event::getSlots() {
   return this->slots;
 }
 
-vector<string> Event::getAttendees() {
+std::vector<string> Event::getAttendees() {
   return this->attendees;
 }
 

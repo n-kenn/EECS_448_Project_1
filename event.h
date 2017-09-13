@@ -7,10 +7,11 @@
 class Event {
 public:
   Event();
+  ~Event();
   void setName(const string& name);
   void getName(const string& name);
-  vector<string> getSlots();
-  vector<string> getAttendees();
+  std::vector<string> getSlots();
+  std::vector<string> getAttendees();
   void addSlot(const string& slot);
   void removeSlot(const string& slot);
   void addAttendee(const string& attendee);
