@@ -3,28 +3,30 @@
 #define EVENT_H
 
 #include <vector>
+#include <string>
 
 using namespace std;
 
 class Event {
 public:
   Event();
+  Event(const string& name, const string& description, const string& creator);
   ~Event();
   void setName(const string& name);
-  void getName(const string& name);
-  vector<string> getSlots();
-  vector<string> getAttendees();
+  string getName() const;
+  string getDate() const;
+  vector<string> getSlots() const;
+  vector<string> getAttendees() const;
   void addSlot(const string& slot);
   void removeSlot(const string& slot);
   void addAttendee(const string& attendee);
   void removeAttendee(const string& attendee);
-  void loopThru(const vector<string>& list); //loops through a vector and currently prints each element
 private:
-  string *name = nullptr;
-  string *description = nullptr;
-  string *date = nullptr;
-  vector<string> *slots = nullptr;
-  vector<string> *attendees = nullptr;
+  string name;
+  string description;
+  string date;
+  vector<string> timeSlots;
+  vector<string> attendees;
 };
 
 #endif
