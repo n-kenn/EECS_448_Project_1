@@ -1,41 +1,45 @@
-#include event.h
+#include "event.h"
 #include <algorithm> //for removing slots and attendees from the event
 
+Event::Event() {
+
+}
+
 Event::Event(const string& name, const string& description, const string& creator):
-  this->name(&name), this->description(&description) {
+  name(name), description (description) {
     this->addAttendee(creator); //everytime an event gets created, the creator is added automatically by default
 }
 
-~Event::Event() {
-  delete this.name;
-  delete this.description;
-  delete this.date;
-  delete this.slots;
-  delete this.attendees;
+Event::~Event() {
+
 }
 
-Event::setName(const string& name) {
-  this.name = &name;
+void Event::setName(const string& name) {
+  this->name = name;
 }
 
-Event::getName() {
-  return this->name;
+string Event::getName() const {
+  return name;
 }
 
-vector<string> Event::getSlots() {
-  return this->slots;
+string Event::getDate() const {
+  return date;
 }
 
-vector<string> Event::getAttendees() {
-  return this->attendees;
+vector<string> Event::getSlots() const {
+  return timeSlots;
+}
+
+vector<string> Event::getAttendees() const {
+  return attendees;
 }
 
 void Event::addSlot(const string& slot) {
-  this->slots.push_back(slot);
+  this->timeSlots.push_back(slot);
 }
 
 void Event::removeSlot(const string& slot) {
-  this->slots.erase(remove(this->slots.begin(), this->slots.end(), slot), this->slots.end());
+  this->timeSlots.erase(remove(this->timeSlots.begin(), this->timeSlots.end(), slot), this->timeSlots.end());
 }
 
 void Event::addAttendee(const string& attendee) {
@@ -44,10 +48,4 @@ void Event::addAttendee(const string& attendee) {
 
 void Event::removeAttendee(const string& attendee) {
   this->attendees.erase(::remove(this->attendees.begin(), this->attendees.end(), attendee), this->attendees.end());
-}
-
-void Event::loopThru(const vector<string>& list) {
-  for(vector<int>::iterator it = list.begin(); it != list.end(); ++it) {
-  cout<< *it; //prints out each element in the vector from beginning to end
-}
 }
