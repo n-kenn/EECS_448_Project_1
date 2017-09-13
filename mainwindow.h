@@ -17,6 +17,24 @@ public:
 
 private slots:
     
+    void on_btnNew_clicked();
+
+    void on_btnSelecExist_clicked();
+
+    void on_btnNewDateBack_clicked();
+
+    void on_btnNewDateNext_clicked();
+
+    void on_btnNewTimeBack_clicked();
+
+    void on_btnNewTimeSave_clicked();
+
+    void on_btnNewTimeToggle_clicked();
+
+    void on_btnExit_clicked();
+
+    void on_btnReturnToStart_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
