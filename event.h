@@ -12,12 +12,13 @@ public:
   ~Event();
   void setName(const string& name);
   void getName(const string& name);
-  std::vector<string> getSlots();
-  std::vector<string> getAttendees();
+  vector<string> getSlots();
+  vector<string> getAttendees();
   void addSlot(const string& slot);
   void removeSlot(const string& slot);
   void addAttendee(const string& attendee);
   void removeAttendee(const string& attendee);
+  void loopThru(const vector<string>& list); //loops through a vector and currently prints each element
 private:
   string *name = nullptr;
   string *description = nullptr;

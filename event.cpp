@@ -45,3 +45,9 @@ void Event::addAttendee(const string& attendee) {
 void Event::removeAttendee(const string& attendee) {
   this->attendees.erase(::remove(this->attendees.begin(), this->attendees.end(), attendee), this->attendees.end());
 }
+
+void Event::loopThru(const vector<string>& list) {
+  for(vector<int>::iterator it = list.begin(); it != list.end(); ++it) {
+  cout<< *it; //prints out each element in the vector from beginning to end
+}
+}
