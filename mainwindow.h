@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "event.h"
 
 namespace Ui {
 class MainWindow;
@@ -48,8 +49,8 @@ private slots:
     void on_btnViewAttendanceReturn_clicked();
 
     void on_btnViewAttendanceQuit_clicked();
-
 private:
+    QVector<Event> eventList;
     Ui::MainWindow *ui;
 };
 

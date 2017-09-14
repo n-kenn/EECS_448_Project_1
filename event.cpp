@@ -5,47 +5,47 @@ Event::Event() {
 
 }
 
-Event::Event(const string& name, const string& description, const string& creator):
-  name(name), description (description) {
-    this->addAttendee(creator); //everytime an event gets created, the creator is added automatically by default
+Event::Event(const QString& name, const QString date):
+  name(name), date(date) {
+
 }
 
 Event::~Event() {
 
 }
 
-void Event::setName(const string& name) {
+void Event::setName(const QString& name) {
   this->name = name;
 }
 
-string Event::getName() const {
+QString Event::getName() const {
   return name;
 }
 
-string Event::getDate() const {
+QString Event::getDate() const {
   return date;
 }
 
-vector<string> Event::getSlots() const {
+QVector<QString> Event::getSlots() const {
   return timeSlots;
 }
 
-vector<string> Event::getAttendees() const {
+QVector<QString> Event::getAttendees() const {
   return attendees;
 }
 
-void Event::addSlot(const string& slot) {
+void Event::addSlot(const QString& slot) {
   this->timeSlots.push_back(slot);
 }
 
-void Event::removeSlot(const string& slot) {
+void Event::removeSlot(const QString& slot) {
   this->timeSlots.erase(remove(this->timeSlots.begin(), this->timeSlots.end(), slot), this->timeSlots.end());
 }
 
-void Event::addAttendee(const string& attendee) {
+void Event::addAttendee(const QString& attendee) {
   this->attendees.push_back(attendee);
 }
 
-void Event::removeAttendee(const string& attendee) {
+void Event::removeAttendee(const QString& attendee) {
   this->attendees.erase(::remove(this->attendees.begin(), this->attendees.end(), attendee), this->attendees.end());
 }

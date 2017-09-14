@@ -39,7 +39,9 @@ void MainWindow::on_btnNewTimeBack_clicked()
 
 void MainWindow::on_btnNewTimeSave_clicked()
 {
-     ui->stackedWidget->setCurrentWidget(ui->pageReturn);
+    Event event(ui->lineEdit->text(), ui->calendarWidget->selectedDate().toString());
+    eventList.append(event);
+    ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 
 void MainWindow::on_btnNewTimeToggle_clicked()
