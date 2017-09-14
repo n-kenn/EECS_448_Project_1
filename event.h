@@ -2,31 +2,30 @@
 #ifndef EVENT_H
 #define EVENT_H
 
-#include <vector>
-#include <string>
+#include <QVector>
+#include <QString>
 
 using namespace std;
 
 class Event {
 public:
   Event();
-  Event(const string& name, const string& description, const string& creator);
+  Event(const QString& name, const QString date);
   ~Event();
-  void setName(const string& name);
-  string getName() const;
-  string getDate() const;
-  vector<string> getSlots() const;
-  vector<string> getAttendees() const;
-  void addSlot(const string& slot);
-  void removeSlot(const string& slot);
-  void addAttendee(const string& attendee);
-  void removeAttendee(const string& attendee);
+  void setName(const QString& name);
+  QString getName() const;
+  QString getDate() const;
+  QVector<QString> getSlots() const;
+  QVector<QString> getAttendees() const;
+  void addSlot(const QString& slot);
+  void removeSlot(const QString& slot);
+  void addAttendee(const QString& attendee);
+  void removeAttendee(const QString& attendee);
 private:
-  string name;
-  string description;
-  string date;
-  vector<string> timeSlots;
-  vector<string> attendees;
+  QString name;
+  QString date;
+  QVector<QString> timeSlots;
+  QVector<QString> attendees;
 };
 
 #endif

@@ -25,12 +25,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
+<<<<<<< HEAD
         mainwindow.cpp\
         event.cpp
 
 HEADERS += \
         mainwindow.h\
         event.h
+=======
+        mainwindow.cpp \
+    event.cpp
+
+HEADERS += \
+        mainwindow.h \
+    event.h
+>>>>>>> origin/josh
 
 FORMS += \
         mainwindow.ui
