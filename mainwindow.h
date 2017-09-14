@@ -49,6 +49,10 @@ private slots:
 
     void on_btnViewAttendanceQuit_clicked();
 
+    void on_rdAdd_clicked();
+
+    void on_rdView_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

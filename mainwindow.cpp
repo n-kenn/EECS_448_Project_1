@@ -96,3 +96,13 @@ void MainWindow::on_btnViewAttendanceQuit_clicked()
 {
     QCoreApplication::quit();
 }
+
+void MainWindow::on_rdAdd_clicked()
+{
+    ui->btnListAttendanceNext->setEnabled(true);
+}
+
+void MainWindow::on_rdView_clicked()
+{
+    ui->btnListAttendanceNext->setEnabled(true);
+}
