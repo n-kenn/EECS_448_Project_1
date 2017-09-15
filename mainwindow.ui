@@ -30,7 +30,11 @@
     <item row="0" column="1">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
+<<<<<<< HEAD
        <number>4</number>
+=======
+       <number>0</number>
+>>>>>>> TBranch
       </property>
       <widget class="QWidget" name="pageStart">
        <layout class="QGridLayout" name="gridLayout_2">
@@ -328,8 +332,13 @@
               <rect>
                <x>0</x>
                <y>0</y>
+<<<<<<< HEAD
                <width>18</width>
                <height>18</height>
+=======
+               <width>1120</width>
+               <height>583</height>
+>>>>>>> TBranch
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_17"/>

@@ -3,14 +3,15 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    currentToggleNew(false)
 {
     ui->setupUi(this);
     float timeCounter = 0;
     for (int i = 0; i < 48; i++){
         QCheckBox *box = new QCheckBox;
-        if (QString::fromStdString(std::to_string(timeCounter)).contains(".5")){
-            QString sTime = QString::fromStdString(std::to_string((int)timeCounter)) + ":30";
+        if (QString::number(timeCounter).contains(".5")){
+            QString sTime = QString::number((int)timeCounter) + ":30";
             if (timeCounter < 3){
                 sTime.prepend("0");
             }
@@ -23,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
         }
         else{
 
-            QString sTime = QString::fromStdString(std::to_string((int)timeCounter)) + ":00";
+            QString sTime = QString::number((int)timeCounter) + ":00";
             if (timeCounter < 3){
                 sTime.prepend("0");
             }
@@ -108,9 +109,9 @@ void MainWindow::on_btnNewTimeToggle_clicked()
                 thatBox->setText(time.time().toString("hh:mm:ss AP"));
         }
         else{
-            QString timeCounterS = QString::fromStdString(std::to_string(timeCounter));
+            QString timeCounterS = QString::number(timeCounter);
                 if (timeCounterS.contains(".5")){
-                    QString sTime = QString::fromStdString(std::to_string((int)timeCounter)) + ":30";
+                    QString sTime = QString::number((int)timeCounter) + ":30";
                     if (timeCounter < 3){
                         sTime.prepend("0");
                     }
@@ -121,7 +122,7 @@ void MainWindow::on_btnNewTimeToggle_clicked()
                 }
                 else{
 
-                    QString sTime = QString::fromStdString(std::to_string((int)timeCounter)) + ":00";
+                    QString sTime = QString::number((int)timeCounter) + ":00";
                     if (timeCounter < 3){
                         sTime.prepend("0");
                     }
