@@ -1,9 +1,3 @@
-#include "mainwindow.h"
-#include <QApplication>
-//#include "writetofile.cpp"
-
-
-
 #include <QDir>
 #include <QFile>
 #include <QDebug>
@@ -38,16 +32,3 @@ void preformWrite(){
     }
 }
 
-
-
-
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-
-    preformWrite();
-
-    return a.exec();
-}
