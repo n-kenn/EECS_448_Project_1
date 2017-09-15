@@ -6,17 +6,37 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QWidget* list = ui->scrollArea->widget();
-    QObjectList newList = list->children();
-    QMessageBox::information(this, "Test", newList.at(2)->objectName());
-    QMessageBox::information(this, "Test", newList.at(3)->objectName());
-    foreach(QObject *box, newList){
-        if (box->objectName().contains("check")){
-            QCheckBox *thatBox = qobject_cast<QCheckBox*>(box);
-            thatBox->setText("Test");
+    float timeCounter = 0;
+    for (int i = 0; i < 48; i++){
+        QCheckBox *box = new QCheckBox;
+        if (QString::fromStdString(std::to_string(timeCounter)).contains(".5")){
+            QString sTime = QString::fromStdString(std::to_string((int)timeCounter)) + ":30";
+            if (timeCounter < 3){
+                sTime.prepend("0");
+            }
+            QDateTime time = QDateTime::currentDateTimeUtc();
+            time.setTime(QDateTime::fromString(sTime, "hh:mm").time());
+            if (!time.time().isValid()){
+                QMessageBox::information(this, "This: ", sTime);
+            }
+            box->setText(time.time().toString());
         }
-    }
+        else{
 
+            QString sTime = QString::fromStdString(std::to_string((int)timeCounter)) + ":00";
+            if (timeCounter < 3){
+                sTime.prepend("0");
+            }
+            QDateTime time = QDateTime::currentDateTimeUtc();
+            time.setTime(QDateTime::fromString(sTime, "hh:mm").time());
+            if (!time.time().isValid()){
+                QMessageBox::information(this, "This: ", sTime);
+            }
+            box->setText(time.time().toString());
+        }
+        timeCounter += 0.5;
+        ui->gridLayout_17->addWidget(box);
+    }
 }
 
 MainWindow::~MainWindow()
@@ -57,7 +77,16 @@ void MainWindow::on_btnNewTimeSave_clicked()
 
 void MainWindow::on_btnNewTimeToggle_clicked()
 {
-
+    QWidget* list = ui->scrollArea->widget();
+    QObjectList newList = list->children();
+    newList.removeFirst();
+    foreach(QObject *box, newList){
+        //Some of the times are currently broken, and only converts back to 12 hour time, and not the other way around.
+                QCheckBox *thatBox = qobject_cast<QCheckBox*>(box);
+                QDateTime time = QDateTime::currentDateTime();
+                time.setTime(QTime::fromString(thatBox->text()));
+                thatBox->setText(time.time().toString("hh:mm:ss AP"));
+    }
 }
 
 void MainWindow::on_btnExit_clicked()
