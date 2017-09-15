@@ -34,16 +34,9 @@
       </property>
       <widget class="QWidget" name="pageStart">
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="1">
+        <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout">
-          <item row="1" column="1">
-           <widget class="QPushButton" name="btnSelecExist">
-            <property name="text">
-             <string>Select Existing Event</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
+          <item row="2" column="0">
            <spacer name="horizontalSpacer">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -56,7 +49,7 @@
             </property>
            </spacer>
           </item>
-          <item row="0" column="2">
+          <item row="2" column="2">
            <spacer name="horizontalSpacer_2">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -69,12 +62,71 @@
             </property>
            </spacer>
           </item>
-          <item row="0" column="1">
+          <item row="4" column="0">
+           <spacer name="verticalSpacer_6">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="4" column="1">
            <widget class="QPushButton" name="btnNew">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Create New</string>
             </property>
            </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="txtName"/>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="lblName">
+            <property name="font">
+             <font>
+              <pointsize>26</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>What is your name?</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QPushButton" name="btnSelecExist">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Select Existing Event</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <spacer name="verticalSpacer_7">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </item>
@@ -84,22 +136,8 @@
        <layout class="QGridLayout" name="gridLayout_13">
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_12">
-          <item row="6" column="2">
-           <widget class="QPushButton" name="pushButton_2">
-            <property name="text">
-             <string>Next</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0">
-           <widget class="QPushButton" name="pushButton">
-            <property name="text">
-             <string>Back</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0" rowspan="2" colspan="3">
-           <widget class="QLineEdit" name="lineEdit">
+          <item row="1" column="0" rowspan="2" colspan="3">
+           <widget class="QLineEdit" name="eventName">
             <property name="toolTip">
              <string>This box serves to provide a name for your event.</string>
             </property>
@@ -116,7 +154,7 @@
              </font>
             </property>
             <property name="text">
-             <string>NAME YOUR EVENT</string>
+             <string>Name Your Event</string>
             </property>
             <property name="textFormat">
              <enum>Qt::PlainText</enum>
@@ -129,7 +167,21 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="0" colspan="3">
+          <item row="5" column="0">
+           <widget class="QPushButton" name="btnNewDateBack">
+            <property name="text">
+             <string>Back</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <widget class="QPushButton" name="btnNewDateNext">
+            <property name="text">
+             <string>Next</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="3">
            <widget class="QCalendarWidget" name="calendarWidget">
             <property name="selectedDate">
              <date>
@@ -147,7 +199,7 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
+          <item row="3" column="1">
            <widget class="QLabel" name="label_6">
             <property name="font">
              <font>
@@ -239,21 +291,21 @@
            </spacer>
           </item>
           <item row="2" column="0" colspan="5">
-           <widget class="QPushButton" name="pushButton_4">
+           <widget class="QPushButton" name="btnNewTimeToggle">
             <property name="text">
              <string>24 Hour Toggle</string>
             </property>
            </widget>
           </item>
           <item row="3" column="0" colspan="5">
-           <widget class="QPushButton" name="pushButton_3">
+           <widget class="QPushButton" name="btnNewTimeSave">
             <property name="text">
              <string>Save</string>
             </property>
            </widget>
           </item>
           <item row="4" column="0" colspan="5">
-           <widget class="QPushButton" name="pushButton_5">
+           <widget class="QPushButton" name="btnNewTimeBack">
             <property name="text">
              <string>Back</string>
             </property>
@@ -276,352 +328,11 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>102</width>
-               <height>1352</height>
+               <width>1120</width>
+               <height>583</height>
               </rect>
              </property>
-             <layout class="QGridLayout" name="gridLayout_17">
-              <item row="0" column="0">
-               <layout class="QGridLayout" name="gridLayout_16">
-                <item row="5" column="0">
-                 <widget class="QCheckBox" name="checkBox_13">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="41" column="0">
-                 <widget class="QCheckBox" name="checkBox_10">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="43" column="0">
-                 <widget class="QCheckBox" name="checkBox_9">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="33" column="0">
-                 <widget class="QCheckBox" name="checkBox_30">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="44" column="0">
-                 <widget class="QCheckBox" name="checkBox_7">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="38" column="0">
-                 <widget class="QCheckBox" name="checkBox_18">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QCheckBox" name="checkBox_5">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="29" column="0">
-                 <widget class="QCheckBox" name="checkBox_33">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="16" column="0">
-                 <widget class="QCheckBox" name="checkBox_21">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="0">
-                 <widget class="QCheckBox" name="checkBox">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="47" column="0">
-                 <widget class="QCheckBox" name="checkBox_2">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="18" column="0">
-                 <widget class="QCheckBox" name="checkBox_17">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="0">
-                 <widget class="QCheckBox" name="checkBox_8">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="45" column="0">
-                 <widget class="QCheckBox" name="checkBox_4">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="36" column="0">
-                 <widget class="QCheckBox" name="checkBox_28">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="42" column="0">
-                 <widget class="QCheckBox" name="checkBox_12">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="15" column="0">
-                 <widget class="QCheckBox" name="checkBox_16">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="14" column="0">
-                 <widget class="QCheckBox" name="checkBox_23">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="6" column="0">
-                 <widget class="QCheckBox" name="checkBox_14">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="28" column="0">
-                 <widget class="QCheckBox" name="checkBox_20">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="17" column="0">
-                 <widget class="QCheckBox" name="checkBox_22">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="39" column="0">
-                 <widget class="QCheckBox" name="checkBox_26">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="31" column="0">
-                 <widget class="QCheckBox" name="checkBox_31">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="11" column="0">
-                 <widget class="QCheckBox" name="checkBox_45">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="26" column="0">
-                 <widget class="QCheckBox" name="checkBox_34">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="30" column="0">
-                 <widget class="QCheckBox" name="checkBox_32">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="21" column="0">
-                 <widget class="QCheckBox" name="checkBox_40">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="23" column="0">
-                 <widget class="QCheckBox" name="checkBox_39">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="20" column="0">
-                 <widget class="QCheckBox" name="checkBox_41">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="12" column="0">
-                 <widget class="QCheckBox" name="checkBox_43">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="22" column="0">
-                 <widget class="QCheckBox" name="checkBox_38">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="27" column="0">
-                 <widget class="QCheckBox" name="checkBox_35">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="24" column="0">
-                 <widget class="QCheckBox" name="checkBox_36">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="9" column="0">
-                 <widget class="QCheckBox" name="checkBox_47">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="25" column="0">
-                 <widget class="QCheckBox" name="checkBox_37">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="4" column="0">
-                 <widget class="QCheckBox" name="checkBox_11">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="34" column="0">
-                 <widget class="QCheckBox" name="checkBox_29">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="37" column="0">
-                 <widget class="QCheckBox" name="checkBox_25">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="7" column="0">
-                 <widget class="QCheckBox" name="checkBox_24">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="19" column="0">
-                 <widget class="QCheckBox" name="checkBox_42">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="32" column="0">
-                 <widget class="QCheckBox" name="checkBox_19">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="13" column="0">
-                 <widget class="QCheckBox" name="checkBox_44">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="0">
-                 <widget class="QCheckBox" name="checkBox_6">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="46" column="0">
-                 <widget class="QCheckBox" name="checkBox_3">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="10" column="0">
-                 <widget class="QCheckBox" name="checkBox_46">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="40" column="0">
-                 <widget class="QCheckBox" name="checkBox_15">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="35" column="0">
-                 <widget class="QCheckBox" name="checkBox_27">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="8" column="0">
-                 <widget class="QCheckBox" name="checkBox_48">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-             </layout>
+             <layout class="QGridLayout" name="gridLayout_17"/>
             </widget>
            </widget>
           </item>
@@ -634,7 +345,7 @@
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_10">
           <item row="0" column="1">
-           <widget class="QPushButton" name="pushButton_6">
+           <widget class="QPushButton" name="btnReturnToStart">
             <property name="text">
              <string>Return to Start</string>
             </property>
@@ -654,7 +365,7 @@
            </spacer>
           </item>
           <item row="1" column="1">
-           <widget class="QPushButton" name="pushButton_7">
+           <widget class="QPushButton" name="btnExit">
             <property name="text">
              <string>End</string>
             </property>
@@ -682,7 +393,7 @@
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_8">
           <item row="3" column="2" colspan="2">
-           <widget class="QPushButton" name="pushButton_9">
+           <widget class="QPushButton" name="btnListAttendanceBack">
             <property name="text">
              <string>Back</string>
             </property>
@@ -696,7 +407,10 @@
            </widget>
           </item>
           <item row="2" column="2" colspan="2">
-           <widget class="QPushButton" name="pushButton_10">
+           <widget class="QPushButton" name="btnListAttendanceNext">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="toolTip">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Depending on which radio button you have selected, you will go to a different place in the program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
@@ -749,10 +463,7 @@
        <layout class="QGridLayout" name="gridLayout_7">
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="1" colspan="6">
-           <widget class="QLineEdit" name="lineEdit_2"/>
-          </item>
-          <item row="3" column="6">
+          <item row="2" column="4">
            <spacer name="horizontalSpacer_4">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -765,21 +476,14 @@
             </property>
            </spacer>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Name:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0" colspan="4">
-           <widget class="QPushButton" name="pushButton_8">
+          <item row="2" column="0" colspan="2">
+           <widget class="QPushButton" name="btnAddAttendanceToggle">
             <property name="text">
              <string>24 Hour Toggle</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="4">
+          <item row="2" column="2">
            <spacer name="horizontalSpacer_10">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -792,7 +496,7 @@
             </property>
            </spacer>
           </item>
-          <item row="4" column="5">
+          <item row="3" column="3">
            <spacer name="horizontalSpacer_8">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -805,7 +509,7 @@
             </property>
            </spacer>
           </item>
-          <item row="3" column="5">
+          <item row="2" column="3">
            <spacer name="horizontalSpacer_9">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -818,24 +522,24 @@
             </property>
            </spacer>
           </item>
-          <item row="2" column="0" colspan="8">
+          <item row="1" column="0" colspan="6">
            <widget class="QListWidget" name="listWidget_2"/>
           </item>
-          <item row="4" column="6">
-           <widget class="QPushButton" name="pushButton_12">
+          <item row="3" column="4">
+           <widget class="QPushButton" name="btnAddAttendanceSave">
             <property name="text">
              <string>Save</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="0" colspan="5">
-           <widget class="QPushButton" name="pushButton_11">
+          <item row="3" column="0" colspan="3">
+           <widget class="QPushButton" name="btnAddAttendanceBack">
             <property name="text">
              <string>Back</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="7">
+          <item row="0" column="0" colspan="5">
            <widget class="QLabel" name="label_3">
             <property name="text">
              <string>Select Available Times</string>
@@ -851,23 +555,23 @@
         <item row="1" column="0">
          <layout class="QGridLayout" name="gridLayout_4">
           <item row="1" column="6">
-           <widget class="QPushButton" name="pushButton_16">
+           <widget class="QPushButton" name="btnViewAttendanceQuit">
             <property name="text">
              <string>Quit</string>
             </property>
            </widget>
           </item>
           <item row="0" column="0">
-           <widget class="QPushButton" name="pushButton_13">
+           <widget class="QPushButton" name="btnViewAttendanceToggle">
             <property name="text">
              <string>24-Hour Toggle</string>
             </property>
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QPushButton" name="pushButton_14">
+           <widget class="QPushButton" name="btnViewAttendanceReturn">
             <property name="text">
-             <string>Return</string>
+             <string>Return to Start</string>
             </property>
            </widget>
           </item>
@@ -875,7 +579,7 @@
            <widget class="QTableWidget" name="tableWidget"/>
           </item>
           <item row="1" column="3">
-           <widget class="QPushButton" name="pushButton_15">
+           <widget class="QPushButton" name="btnViewAttendanceBack">
             <property name="text">
              <string>Back</string>
             </property>

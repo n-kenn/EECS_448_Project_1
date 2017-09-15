@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QCheckBox>
+#include <QMessageBox>
+#include "event.h"
 
 namespace Ui {
 class MainWindow;
@@ -13,41 +16,204 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    /*!
+      \brief MainWindow - Deconstructor
+      *
+      * Pre: The MainWindow is to be deleted.
+      *
+      * Post: None
+      */
     ~MainWindow();
 
 private slots:
+    /*!
+     * \brief on_btnNew_clicked
+     *
+     * Pre: None
+     *
+     * Post: The button is clicked, indicating that a new event is wanting to be created.
+     */
     void on_btnNew_clicked();
 
-    void on_pushButton_2_clicked();
-
-    void on_pushButton_3_clicked();
-
-    void on_pushButton_5_clicked();
-
-    void on_pushButton_6_clicked();
-
-    void on_pushButton_7_clicked();
-
+    /*!
+     * \brief on_btnSelecExist_clicked
+     *
+     * Pre: None
+     *
+     * Post: The button is clicked, indicating that something is desired about the attendance.
+     */
     void on_btnSelecExist_clicked();
 
-    void on_pushButton_10_clicked();
+    /*!
+     * \brief on_btnNewDateBack_clicked
+     *
+     * Pre: None
+     *
+     * Post: The user will return to pageStart.
+     */
+    void on_btnNewDateBack_clicked();
 
-    void on_pushButton_9_clicked();
+    /*!
+     * \brief on_btnNewDateNext_clicked
+     *
+     * Pre: None
+     *
+     * Post: The user will go to select a time for the new event.
+     */
+    void on_btnNewDateNext_clicked();
 
-    void on_pushButton_11_clicked();
 
-    void on_pushButton_12_clicked();
+    /*!
+     * \brief on_btnNewTimeBack_clicked
+     *
+     * Pre: None
+     *
+     * Post: The user will return back to pick a date.
+     */
+    void on_btnNewTimeBack_clicked();
 
-    void on_pushButton_14_clicked();
 
-    void on_pushButton_15_clicked();
+    /*!
+     * \brief on_btnNewTimeSave_clicked
+     *
+     * Pre: None
+     *
+     * Post: The date and times will be saved, and a new event will be created.
+     */
+    void on_btnNewTimeSave_clicked();
 
-    void on_pushButton_16_clicked();
 
-    void on_pushButton_clicked();
+    /*!
+     * \brief on_btnNewTimeToggle_clicked
+     *
+     * Pre: None
+     *
+     * Post: The time format on the checkboxes will be changed to either 24 or 12 hour format depending on the value of
+     *       currentToggleNew.
+     */
+    void on_btnNewTimeToggle_clicked();
+
+
+    /*!
+     * \brief on_btnExit_clicked
+     *
+     * Pre: None
+     *
+     * Post: The program is to end.
+     */
+    void on_btnExit_clicked();
+
+
+    /*!
+     * \brief on_btnReturnToStart_clicked
+     *
+     * Pre: None
+     *
+     * Post: The user will return back to the start.
+     */
+    void on_btnReturnToStart_clicked();
+
+    /*!
+     * \brief on_btnListAttendanceBack_clicked
+     *
+     * Pre: None
+     *
+     * Post: The user will return back to the beginning.
+     */
+    void on_btnListAttendanceBack_clicked();
+
+
+    /*!
+     * \brief on_btnListAttendanceNext_clicked
+     *
+     * Pre: None
+     *
+     * Post: The user will go either to add their attendance to the selected event,
+     *       or they will go to see a list of attendees to events.
+     */
+    void on_btnListAttendanceNext_clicked();
+
+
+    /*!
+     * \brief on_btnAddAttendanceBack_clicked
+     *
+     * Pre: None
+     *
+     * Post: The user will return back to pageListAttendance
+     */
+    void on_btnAddAttendanceBack_clicked();
+
+    /*!
+     * \brief on_btnAddAttendanceSave_clicked
+     *
+     * Pre: None
+     *
+     * Post: The user's attendance to the selected event will be saved.
+     */
+    void on_btnAddAttendanceSave_clicked();
+
+    /*!
+     * \brief on_btnViewAttendanceBack_clicked
+     *
+     * Pre: None
+     *
+     * Post: The user will return back to pageListAttendance
+     */
+    void on_btnViewAttendanceBack_clicked();
+
+    /*!
+     * \brief on_btnViewAttendanceReturn_clicked
+     *
+     * Pre: None
+     *
+     * Post: The user will return back to the beginning of the program.
+     */
+    void on_btnViewAttendanceReturn_clicked();
+
+    /*!
+     * \brief on_btnViewAttendanceQuit_clicked
+     *
+     * Pre: None
+     *
+     * Post: The program is to end.
+     */
+    void on_btnViewAttendanceQuit_clicked();
+
+
+    /*!
+     * \brief on_txtName_textChanged
+     * \param arg1 - An unnecessary argument, but kept just in case for potential needs for evaluation.
+     *
+     * Pre: None
+     *
+     * Post: So long as the line edit is not empty, the buttons will become enabled.
+     */
+    void on_txtName_textChanged(const QString &arg1);
+
+
+    /*!
+     * \brief on_rdAdd_clicked
+     *
+     * Pre: None
+     *
+     * Post: btnListAttendanceNext will be enabled.
+     */
+    void on_rdAdd_clicked();
+
+    /*!
+     * \brief on_rdView_clicked
+     *
+     * Pre: None
+     *
+     * Post: btnLIstAttendanceNext will be enabled.
+     */
+    void on_rdView_clicked();
 
 private:
-    Ui::MainWindow *ui;
+    QVector<Event> eventList; /*!< The list of the events currently established. */
+    Ui::MainWindow *ui; /*!< The "Main Window" object where all of the widgets reside.*/
+    bool currentToggleNew; /*!< Keeps track of whether or not the toggle button on the pageNewTime is currently in the
+                                UTC or the AM/PM format. False represents 24 hour, and true represents 12 hour format. */
 };
 
 #endif // MAINWINDOW_H
