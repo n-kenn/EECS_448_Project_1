@@ -10,11 +10,12 @@ using namespace std;
 class Event {
 public:
   Event();
-  Event(const QString& name, const QString date);
+  Event(const QString& name, const QString& date, const QString& creator);
   ~Event();
   void setName(const QString& name);
   QString getName() const;
   QString getDate() const;
+  QString getCreator() const;
   QVector<QString> getSlots() const;
   QVector<QString> getAttendees() const;
   void addSlot(const QString& slot);
@@ -23,6 +24,7 @@ public:
   void removeAttendee(const QString& attendee);
 private:
   QString name;
+  QString creator;
   QString date;
   QVector<QString> timeSlots;
   QVector<QString> attendees;

@@ -50,8 +50,9 @@ void MainWindow::on_btnNewTimeBack_clicked()
 
 void MainWindow::on_btnNewTimeSave_clicked()
 {
-    Event event(ui->lineEdit->text(), ui->calendarWidget->selectedDate().toString());
+    Event event(ui->lineEdit->text(), ui->calendarWidget->selectedDate().toString(), ui->txtName->text());
     eventList.append(event);
+    ui->lineEdit->setText(event.getCreator());
     ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 
