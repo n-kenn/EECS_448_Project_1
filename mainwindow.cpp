@@ -6,6 +6,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QWidget* list = ui->scrollArea->widget();
+    QObjectList newList = list->children();
+    QMessageBox::information(this, "Test", newList.at(2)->objectName());
+    QMessageBox::information(this, "Test", newList.at(3)->objectName());
+    foreach(QObject *box, newList){
+        if (box->objectName().contains("check")){
+            QCheckBox *thatBox = qobject_cast<QCheckBox*>(box);
+            thatBox->setText("Test");
+        }
+    }
+
 }
 
 MainWindow::~MainWindow()
@@ -97,4 +108,16 @@ void MainWindow::on_btnViewAttendanceReturn_clicked()
 void MainWindow::on_btnViewAttendanceQuit_clicked()
 {
     QCoreApplication::quit();
+}
+
+void MainWindow::on_txtName_textChanged(const QString &arg1)
+{
+    if (ui->txtName->text() != ""){
+        ui->btnNew->setEnabled(true);
+        ui->btnSelecExist->setEnabled(true);
+    }
+    else{
+        ui->btnNew->setEnabled(false);
+        ui->btnSelecExist->setEnabled(false);
+    }
 }

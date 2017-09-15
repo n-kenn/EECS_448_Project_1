@@ -30,20 +30,13 @@
     <item row="0" column="1">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="pageStart">
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="1">
+        <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout">
-          <item row="1" column="1">
-           <widget class="QPushButton" name="btnSelecExist">
-            <property name="text">
-             <string>Select Existing Event</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
+          <item row="2" column="0">
            <spacer name="horizontalSpacer">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -56,7 +49,7 @@
             </property>
            </spacer>
           </item>
-          <item row="0" column="2">
+          <item row="2" column="2">
            <spacer name="horizontalSpacer_2">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -69,12 +62,71 @@
             </property>
            </spacer>
           </item>
-          <item row="0" column="1">
+          <item row="4" column="0">
+           <spacer name="verticalSpacer_6">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="4" column="1">
            <widget class="QPushButton" name="btnNew">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Create New</string>
             </property>
            </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="txtName"/>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="lblName">
+            <property name="font">
+             <font>
+              <pointsize>26</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>What is your name?</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QPushButton" name="btnSelecExist">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Select Existing Event</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <spacer name="verticalSpacer_7">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </item>
@@ -275,9 +327,9 @@
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>0</y>
-               <width>1090</width>
-               <height>1358</height>
+               <y>-769</y>
+               <width>1100</width>
+               <height>1352</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_17">
@@ -347,7 +399,7 @@
                  </widget>
                 </item>
                 <item row="0" column="0">
-                 <widget class="QCheckBox" name="checkBox">
+                 <widget class="QCheckBox" name="a">
                   <property name="text">
                    <string>CheckBox</string>
                   </property>
@@ -749,10 +801,7 @@
        <layout class="QGridLayout" name="gridLayout_7">
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="1" colspan="6">
-           <widget class="QLineEdit" name="lineEdit_2"/>
-          </item>
-          <item row="3" column="6">
+          <item row="2" column="4">
            <spacer name="horizontalSpacer_4">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -765,21 +814,14 @@
             </property>
            </spacer>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Name:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0" colspan="4">
+          <item row="2" column="0" colspan="2">
            <widget class="QPushButton" name="btnAddAttendanceToggle">
             <property name="text">
              <string>24 Hour Toggle</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="4">
+          <item row="2" column="2">
            <spacer name="horizontalSpacer_10">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -792,7 +834,7 @@
             </property>
            </spacer>
           </item>
-          <item row="4" column="5">
+          <item row="3" column="3">
            <spacer name="horizontalSpacer_8">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -805,7 +847,7 @@
             </property>
            </spacer>
           </item>
-          <item row="3" column="5">
+          <item row="2" column="3">
            <spacer name="horizontalSpacer_9">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -818,24 +860,24 @@
             </property>
            </spacer>
           </item>
-          <item row="2" column="0" colspan="8">
+          <item row="1" column="0" colspan="6">
            <widget class="QListWidget" name="listWidget_2"/>
           </item>
-          <item row="4" column="6">
+          <item row="3" column="4">
            <widget class="QPushButton" name="btnAddAttendanceSave">
             <property name="text">
              <string>Save</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="0" colspan="5">
+          <item row="3" column="0" colspan="3">
            <widget class="QPushButton" name="btnAddAttendanceBack">
             <property name="text">
              <string>Back</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="7">
+          <item row="0" column="0" colspan="5">
            <widget class="QLabel" name="label_3">
             <property name="text">
              <string>Select Available Times</string>

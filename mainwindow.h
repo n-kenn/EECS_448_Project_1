@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QCheckBox>
+#include <QMessageBox>
 #include "event.h"
 
 namespace Ui {
@@ -49,6 +51,8 @@ private slots:
     void on_btnViewAttendanceReturn_clicked();
 
     void on_btnViewAttendanceQuit_clicked();
+    void on_txtName_textChanged(const QString &arg1);
+
 private:
     QVector<Event> eventList;
     Ui::MainWindow *ui;

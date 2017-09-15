@@ -47,5 +47,5 @@ void Event::addAttendee(const QString& attendee) {
 }
 
 void Event::removeAttendee(const QString& attendee) {
-  this->attendees.erase(::remove(this->attendees.begin(), this->attendees.end(), attendee), this->attendees.end());
+  this->attendees.erase(remove(this->attendees.begin(), this->attendees.end(), attendee), this->attendees.end());
 }
