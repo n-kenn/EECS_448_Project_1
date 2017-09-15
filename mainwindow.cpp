@@ -111,6 +111,7 @@ void MainWindow::on_btnViewAttendanceQuit_clicked()
     QCoreApplication::quit();
 }
 
+<<<<<<< HEAD
 void MainWindow::on_txtName_textChanged(const QString &arg1)
 {
     if (ui->txtName->text() != ""){
@@ -121,4 +122,14 @@ void MainWindow::on_txtName_textChanged(const QString &arg1)
         ui->btnNew->setEnabled(false);
         ui->btnSelecExist->setEnabled(false);
     }
+=======
+void MainWindow::on_rdAdd_clicked()
+{
+    ui->btnListAttendanceNext->setEnabled(true);
+}
+
+void MainWindow::on_rdView_clicked()
+{
+    ui->btnListAttendanceNext->setEnabled(true);
+>>>>>>> 12a0440d9d033b099f2afadf7b418cfd6024ce5e
 }
