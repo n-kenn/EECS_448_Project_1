@@ -6,17 +6,37 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QWidget* list = ui->scrollArea->widget();
-    QObjectList newList = list->children();
-    QMessageBox::information(this, "Test", newList.at(2)->objectName());
-    QMessageBox::information(this, "Test", newList.at(3)->objectName());
-    foreach(QObject *box, newList){
-        if (box->objectName().contains("check")){
-            QCheckBox *thatBox = qobject_cast<QCheckBox*>(box);
-            thatBox->setText("Test");
+    float timeCounter = 0;
+    for (int i = 0; i < 48; i++){
+        QCheckBox *box = new QCheckBox;
+        if (QString::fromStdString(std::to_string(timeCounter)).contains(".5")){
+            QString sTime = QString::fromStdString(std::to_string((int)timeCounter)) + ":30";
+            if (timeCounter < 3){
+                sTime.prepend("0");
+            }
+            QDateTime time;
+            time.setTime(QDateTime::fromString(sTime, "hh:mm").time());
+            if (!time.time().isValid()){
+                QMessageBox::information(this, "This: ", sTime);
+            }
+            box->setText(time.time().toString());
         }
-    }
+        else{
 
+            QString sTime = QString::fromStdString(std::to_string((int)timeCounter)) + ":00";
+            if (timeCounter < 3){
+                sTime.prepend("0");
+            }
+            QDateTime time;
+            time.setTime(QDateTime::fromString(sTime, "hh:mm").time());
+            if (!time.time().isValid()){
+                QMessageBox::information(this, "This: ", sTime);
+            }
+            box->setText(time.time().toString());
+        }
+        timeCounter += 0.5;
+        ui->gridLayout_17->addWidget(box);
+    }
 }
 
 MainWindow::~MainWindow()
@@ -58,7 +78,64 @@ void MainWindow::on_btnNewTimeSave_clicked()
 
 void MainWindow::on_btnNewTimeToggle_clicked()
 {
+    QWidget* list = ui->scrollArea->widget();
+    QObjectList newList = list->children();
+    newList.removeFirst();
+    float timeCounter = 0;
+    foreach(QObject *box, newList){
+        QCheckBox *thatBox = qobject_cast<QCheckBox*>(box);
+        if (!currentToggleNew){
+                QString textToConvert = thatBox->text();
+                /*Extremely odd behavior where I imagine float to String converstion produces odd & character.
+                 * These were the locations that they appeared in the string, so they are fixed accordingly.
+                */
+                if(textToConvert.contains("&")){
+                    if (textToConvert.indexOf("&") == 3){
+                        textToConvert.replace("&", "");
 
+                    }
+                    if (textToConvert.indexOf("&") == 1){
+                        textToConvert.replace("&", "");
+
+                    }
+                    if (textToConvert.indexOf("&") == 0){
+                        textToConvert.replace("&", "");
+
+                    }
+                }
+                QDateTime time;
+                time.setTime(QTime::fromString(textToConvert));
+                thatBox->setText(time.time().toString("hh:mm:ss AP"));
+        }
+        else{
+            QString timeCounterS = QString::fromStdString(std::to_string(timeCounter));
+                if (timeCounterS.contains(".5")){
+                    QString sTime = QString::fromStdString(std::to_string((int)timeCounter)) + ":30";
+                    if (timeCounter < 3){
+                        sTime.prepend("0");
+                    }
+                    QDateTime time;
+                    time.setTime(QDateTime::fromString(sTime, "hh:mm").time());
+
+                    thatBox->setText(time.time().toString());
+                }
+                else{
+
+                    QString sTime = QString::fromStdString(std::to_string((int)timeCounter)) + ":00";
+                    if (timeCounter < 3){
+                        sTime.prepend("0");
+                    }
+                    QDateTime time;
+                    time.setTime(QDateTime::fromString(sTime, "hh:mm").time());
+                    thatBox->setText(time.time().toString());
+                }
+                timeCounter += 0.5;
+        }
+    }
+    if (currentToggleNew)
+        currentToggleNew = false;
+    else
+        currentToggleNew = true;
 }
 
 void MainWindow::on_btnExit_clicked()
@@ -111,7 +188,6 @@ void MainWindow::on_btnViewAttendanceQuit_clicked()
     QCoreApplication::quit();
 }
 
-<<<<<<< HEAD
 void MainWindow::on_txtName_textChanged(const QString &arg1)
 {
     if (ui->txtName->text() != ""){
@@ -122,7 +198,7 @@ void MainWindow::on_txtName_textChanged(const QString &arg1)
         ui->btnNew->setEnabled(false);
         ui->btnSelecExist->setEnabled(false);
     }
-=======
+
 void MainWindow::on_rdAdd_clicked()
 {
     ui->btnListAttendanceNext->setEnabled(true);
@@ -131,5 +207,4 @@ void MainWindow::on_rdAdd_clicked()
 void MainWindow::on_rdView_clicked()
 {
     ui->btnListAttendanceNext->setEnabled(true);
->>>>>>> 12a0440d9d033b099f2afadf7b418cfd6024ce5e
 }

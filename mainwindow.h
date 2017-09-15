@@ -51,18 +51,17 @@ private slots:
     void on_btnViewAttendanceReturn_clicked();
 
     void on_btnViewAttendanceQuit_clicked();
-<<<<<<< HEAD
+
     void on_txtName_textChanged(const QString &arg1);
-=======
 
     void on_rdAdd_clicked();
 
     void on_rdView_clicked();
->>>>>>> 12a0440d9d033b099f2afadf7b418cfd6024ce5e
 
 private:
     QVector<Event> eventList;
     Ui::MainWindow *ui;
+    bool currentToggleNew = false;
 };
 
 #endif // MAINWINDOW_H
