@@ -70,9 +70,9 @@ void MainWindow::on_btnNewTimeBack_clicked()
 
 void MainWindow::on_btnNewTimeSave_clicked()
 {
-    Event event(ui->lineEdit->text(), ui->calendarWidget->selectedDate().toString(), ui->txtName->text());
+    Event event(ui->eventName->text(), ui->calendarWidget->selectedDate().toString(), ui->txtName->text());
     eventList.append(event);
-    ui->lineEdit->setText(event.getCreator());
+    ui->eventName->setText(event.getCreator());
     ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 
@@ -198,7 +198,7 @@ void MainWindow::on_txtName_textChanged(const QString &arg1)
         ui->btnNew->setEnabled(false);
         ui->btnSelecExist->setEnabled(false);
     }
-
+}
 void MainWindow::on_rdAdd_clicked()
 {
     ui->btnListAttendanceNext->setEnabled(true);
