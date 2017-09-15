@@ -56,6 +56,7 @@ private slots:
 private:
     QVector<Event> eventList;
     Ui::MainWindow *ui;
+    bool currentToggleNew = false;
 };
 
 #endif // MAINWINDOW_H

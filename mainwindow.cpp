@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
             if (timeCounter < 3){
                 sTime.prepend("0");
             }
-            QDateTime time = QDateTime::currentDateTimeUtc();
+            QDateTime time;
             time.setTime(QDateTime::fromString(sTime, "hh:mm").time());
             if (!time.time().isValid()){
                 QMessageBox::information(this, "This: ", sTime);
@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
             if (timeCounter < 3){
                 sTime.prepend("0");
             }
-            QDateTime time = QDateTime::currentDateTimeUtc();
+            QDateTime time;
             time.setTime(QDateTime::fromString(sTime, "hh:mm").time());
             if (!time.time().isValid()){
                 QMessageBox::information(this, "This: ", sTime);
@@ -80,13 +80,61 @@ void MainWindow::on_btnNewTimeToggle_clicked()
     QWidget* list = ui->scrollArea->widget();
     QObjectList newList = list->children();
     newList.removeFirst();
+    float timeCounter = 0;
     foreach(QObject *box, newList){
-        //Some of the times are currently broken, and only converts back to 12 hour time, and not the other way around.
-                QCheckBox *thatBox = qobject_cast<QCheckBox*>(box);
-                QDateTime time = QDateTime::currentDateTime();
-                time.setTime(QTime::fromString(thatBox->text()));
+        QCheckBox *thatBox = qobject_cast<QCheckBox*>(box);
+        if (!currentToggleNew){
+                QString textToConvert = thatBox->text();
+                /*Extremely odd behavior where I imagine float to String converstion produces odd & character.
+                 * These were the locations that they appeared in the string, so they are fixed accordingly.
+                */
+                if(textToConvert.contains("&")){
+                    if (textToConvert.indexOf("&") == 3){
+                        textToConvert.replace("&", "");
+
+                    }
+                    if (textToConvert.indexOf("&") == 1){
+                        textToConvert.replace("&", "");
+
+                    }
+                    if (textToConvert.indexOf("&") == 0){
+                        textToConvert.replace("&", "");
+
+                    }
+                }
+                QDateTime time;
+                time.setTime(QTime::fromString(textToConvert));
                 thatBox->setText(time.time().toString("hh:mm:ss AP"));
+        }
+        else{
+            QString timeCounterS = QString::fromStdString(std::to_string(timeCounter));
+                if (timeCounterS.contains(".5")){
+                    QString sTime = QString::fromStdString(std::to_string((int)timeCounter)) + ":30";
+                    if (timeCounter < 3){
+                        sTime.prepend("0");
+                    }
+                    QDateTime time;
+                    time.setTime(QDateTime::fromString(sTime, "hh:mm").time());
+
+                    thatBox->setText(time.time().toString());
+                }
+                else{
+
+                    QString sTime = QString::fromStdString(std::to_string((int)timeCounter)) + ":00";
+                    if (timeCounter < 3){
+                        sTime.prepend("0");
+                    }
+                    QDateTime time;
+                    time.setTime(QDateTime::fromString(sTime, "hh:mm").time());
+                    thatBox->setText(time.time().toString());
+                }
+                timeCounter += 0.5;
+        }
     }
+    if (currentToggleNew)
+        currentToggleNew = false;
+    else
+        currentToggleNew = true;
 }
 
 void MainWindow::on_btnExit_clicked()
