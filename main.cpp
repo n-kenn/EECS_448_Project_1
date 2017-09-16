@@ -9,19 +9,19 @@
 #include <QDebug>
 
 void preformWrite(){
-    QFile file("test.txt");
+    QFile file(QDir::currentPath() + "/test.txt");
 
     if(!file.exists()){
         qDebug() << file.fileName() << "does not exist";
     }
-    if(file.open(QIODevice::ReadOnly | QIODevice::WriteOnly | QIODevice::Text)){
+    if(file.open(QIODevice::ReadWrite)){
         QTextStream txtStream(&file);
 
         qDebug() << "---- Writing to file ----";
 
         txtStream << "The first Line\n";
         txtStream << "The second Line\n";
-        txtStream << "Note that the >> operator does not appen a new line automatically at the end\n";
+        txtStream << "Note that the >> operator does nnot appen a new line automatically at the end\n";
 
         qDebug() << "----Reading from file ----";
         txtStream.seek(0);//specifying the position to be zero
