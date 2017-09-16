@@ -14,10 +14,18 @@ ReadWrite::ReadWrite(){
  */
 
 void ReadWrite::write(const Event& event) {
-  QFile file(QDir::currentPath() + "eventlist.txt");
+  QFile file(/*QDir::currentPath() +*/ "eventlist.txt");
   if(file.open(QIODevice::Append | QIODevice::WriteOnly)) {
       QTextStream writeStream(&file);
-      writeStream<<event.getName();
+      writeStream<< "[event] " + event.getName() +"\n";
+      writeStream<< "[creator] " + event.getCreator() + "\n";
+      writeStream<< "[date] " + event.getDate() + "\n";
+      QString timeSlots;
+      foreach(QString time, event.getSlots())
+      {
+          timeSlots += (time + ",");
+      }
+      writeStream<< "[timeSlots] " + timeSlots + "\n\n";
   }
   file.close();
 }
