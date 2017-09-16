@@ -188,7 +188,7 @@ private slots:
      *
      * Post: So long as the line edit is not empty, the buttons will become enabled.
      */
-    void on_txtName_textChanged(const QString &arg1);
+    void on_txtName_textChanged(/*const QString &arg1*/);
 
 
     /*!

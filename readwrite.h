@@ -7,7 +7,7 @@ class ReadWrite {
 public:
   ReadWrite();
   static void write(const Event& event);
-  static void read(const QString& filename);
+  static void read(/*const QString& filename*/);
 private:
 
 };
