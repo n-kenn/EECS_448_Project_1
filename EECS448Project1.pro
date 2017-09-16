@@ -25,12 +25,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-<<<<<<< HEAD
-        mainwindow.cpp \
-=======
         mainwindow.cpp\
         event.cpp
->>>>>>> origin/TBranch
+
 
 HEADERS += \
         mainwindow.h\
