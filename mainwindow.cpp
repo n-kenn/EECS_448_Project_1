@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "readwrite.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -73,7 +74,8 @@ void MainWindow::on_btnNewTimeSave_clicked()
 {
     Event event(ui->eventName->text(), ui->calendarWidget->selectedDate().toString(), ui->txtName->text());
     eventList.append(event);
-    ui->eventName->setText(event.getCreator());
+    ReadWrite::write(event);
+
     ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 

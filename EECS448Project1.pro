@@ -26,12 +26,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp\
-        event.cpp
+        event.cpp \
+    readwrite.cpp
 
 
 HEADERS += \
         mainwindow.h\
-        event.h
+        event.h \
+    readwrite.h
 
 FORMS += \
         mainwindow.ui

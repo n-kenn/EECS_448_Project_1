@@ -139,8 +139,8 @@ public:
   void removeAttendee(const QString& attendee);
 private:
   QString name; /*!< The name of the event.*/
-  QString creator; /*!< The name of the creator.*/
   QString date; /*!< the date that the event is going to take place at.*/
+  QString creator; /*!< The name of the creator.*/
   QVector<QString> timeSlots; /*!< The times the event will be taking place at. Multiple times in stagnated bunches might be used,
                                    so a vector is used. */
   QVector<QString> attendees; /*!< The list of the attendees to an event.*/

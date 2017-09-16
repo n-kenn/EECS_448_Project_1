@@ -1,3 +1,0 @@
-The first Line
-The second Line
-Note that the >> operator does not appen a new line automatically at the end
