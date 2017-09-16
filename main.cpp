@@ -6,6 +6,7 @@
 
 #include <QDir>
 #include <QFile>
+#include <QTextStream>
 
 void performWrite(){
     QFile file(QDir::currentPath() + "/test.txt");
