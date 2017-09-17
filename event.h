@@ -116,6 +116,7 @@ public:
    * Post: An attendee is added.
    */
   void addAttendee(const Attendee& attendee);
+  QVector<QString> getAttendeeNames() const;
 private:
   QString name; /*!< The name of the event.*/
   QString date; /*!< the date that the event is going to take place at.*/

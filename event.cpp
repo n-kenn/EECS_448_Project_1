@@ -32,6 +32,14 @@ QVector<Attendee> Event::getAttendees() const {
   return attendees;
 }
 
+QVector<QString> Event::getAttendeeNames() const {
+    QVector<QString> names;
+    foreach(Attendee attendee, attendees) {
+        names.append(attendee.getName());
+    }
+    return names;
+}
+
 void Event::addSlot(const QString& slot) {
   this->timeSlots.push_back(slot);
 }

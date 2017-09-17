@@ -1,9 +1,5 @@
 [event] Josh's BBQ
 [creator] Josh
 [date] Sun Sep 17 2017
-<<<<<<< Updated upstream
 [timeSlots] 05:30:00 PM,06:00:00 PM,06:30:00 PM,
 
-=======
-[timeSlots] 06:00:00 AM06:30:00 AM07:00:00 AM
->>>>>>> Stashed changes
