@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
         timeCounter += 0.5;
         ui->gridLayout_17->addWidget(box);
     }
-    //Test Code for table widget of pageViewAttendance
+    /*/Test Code for table widget of pageViewAttendance
     QVector<QString> times;
     QString time = "Nonya";
     times.append(time);
@@ -52,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
         event.addAttendee(att2);
         eventList.append(event);
     }
-    //End of Test Code
+    //End of Test Code*/
 
      //Table Widget Initialization.
      ui->tableWidget->insertRow(0);
@@ -81,7 +81,7 @@ void MainWindow::on_btnNew_clicked()
 
 void MainWindow::on_btnSelecExist_clicked()
 {
-
+    ui->lstListEvents->clear();
     foreach (Event e, eventList){
         ui->lstListEvents->addItem(e.getName());
     }
@@ -120,7 +120,7 @@ void MainWindow::on_btnNewTimeSave_clicked()
     Attendee creator(ui->txtName->text(), timeSlots);
     event.addAttendee(creator);
     eventList.append(event);
-    ReadWrite::write(event);
+
     ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 

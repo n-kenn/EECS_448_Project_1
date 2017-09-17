@@ -24,6 +24,19 @@ void ReadWrite::write(const Event& event) {
       {
           writeStream<<time + ",";
       }
+      writeStream << "\n";
+      if (event.getAttendees().size() > 0)
+      {
+          foreach(Attendee att, event.getAttendees())
+          {
+              writeStream<< "[attendee] " + att.getName() + "\n";
+              writeStream<< "[att_timeSlots] ";
+              foreach(QString time, att.getSlots())
+              {
+                  writeStream<<time + ",";
+              }
+          }
+      }
       writeStream<< "\n\n";
   }
   file.close();
