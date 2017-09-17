@@ -14,7 +14,7 @@ ReadWrite::ReadWrite(){
  */
 
 void ReadWrite::write(const Event& event) {
-  QFile file(/*QDir::currentPath() +*/ "eventlist.txt");
+  QFile file("eventlist.txt");
   if(file.open(QIODevice::Append | QIODevice::WriteOnly)) {
       QTextStream writeStream(&file);
       writeStream<< "[event] " + event.getName() +"\n";
@@ -26,7 +26,12 @@ void ReadWrite::write(const Event& event) {
           writeStream<<time;
       }
       writeStream<<"\n\n";
+      writeStream<<event.getName();
+
+    //  writeStream<<event.getDate();
+     // writeStream<<event.getTimeSlots();
   }
+
   file.close();
 }
 
