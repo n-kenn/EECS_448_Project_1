@@ -304,8 +304,8 @@ void MainWindow::on_btnViewAttendanceToggle_clicked()
 {
     if(ui->tableWidget->rowCount() != 1){
         for(int i = 1; i < ui->tableWidget->rowCount(); i++){
-            QTableWidgetItem item = ui->tableWidget->item(i, 1);
-            QList<QString> itemS = item.text().split(" ");
+            QTableWidgetItem* item = ui->tableWidget->item(i, 1);
+            QList<QString> itemS = item->text().split(" ");
             foreach(QString time, itemS){
                 //Add Conversion code here. A toggle is already in place called currentToggleView
             }

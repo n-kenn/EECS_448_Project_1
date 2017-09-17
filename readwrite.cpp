@@ -79,12 +79,29 @@ void ReadWrite::read(QVector<Event>& eventList) {
               {
                   timeSlots.append(times.left(times.indexOf(",")));
                   times = times.right(times.size() - (times.indexOf(",")+1));
+              }
+              Event newEvent(eventName, creatorName, date, timeSlots);
+              timeSlots.clear();
+              lines = readStream.readLine();
+              while (lines.startsWith("[attendee] "))
+              {
 
+                  att_name = lines.right(lines.size()-11);
+                  lines = readStream.readLine();
+                  att_times = lines.right(lines.size()-16);
+
+                  while (att_times.count(",") > 1)
+                  {
+                      timeSlots.append(att_times.left(att_times.indexOf(",")));
+                      att_times = att_times.right(att_times.size() - (att_times.indexOf(",")+1));
+                  }
+                  Attendee att(att_name, timeSlots);
+                  newEvent.addAttendee(att);
+                  lines = readStream.readLine();
               }
 
-              Event newEvent(eventName, creatorName, date, timeSlots);
               eventList.append(newEvent);
-              timeSlots.clear();
+
           }
        }
       file.remove();
