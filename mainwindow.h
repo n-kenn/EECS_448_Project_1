@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QCheckBox>
 #include <QMessageBox>
+#include <QListWidgetItem>
 #include "event.h"
 
 namespace Ui {
@@ -210,11 +211,18 @@ private slots:
      */
     void on_rdView_clicked();
 
+    void on_lstListEvents_itemClicked(QListWidgetItem *item);
+
+    void on_btnViewAttendanceToggle_clicked();
+
 private:
     QVector<Event> eventList;
     Ui::MainWindow *ui; /*!< The "Main Window" object where all of the widgets reside.*/
     bool currentToggleNew; /*!< Keeps track of whether or not the toggle button on the pageNewTime is currently in the
                                 UTC or the AM/PM format. False represents 24 hour, and true represents 12 hour format. */
+    QString currentEvent;
+
+    bool currentToggleView;
 };
 
 #endif // MAINWINDOW_H
