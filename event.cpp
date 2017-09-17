@@ -14,10 +14,6 @@ Event::~Event() {
 
 }
 
-void Event::setName(const QString& name) {
-  this->name = name;
-}
-
 QString Event::getName() const {
   return name;
 }

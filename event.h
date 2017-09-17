@@ -37,17 +37,6 @@ public:
   * Post: None
   */
   ~Event();
-
-  /*!
-   * \brief setName
-   * \param name
-   *\details
-   * Pre: A name is to be added.
-   *
-   * Post: a name is added to the event.
-   */
-  void setName(const QString& name);
-
   /*!
    * \brief getName
    * \return name

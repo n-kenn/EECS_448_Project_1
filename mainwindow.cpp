@@ -75,7 +75,6 @@ void MainWindow::on_btnNewTimeSave_clicked()
     Event event(ui->eventName->text(), ui->calendarWidget->selectedDate().toString(), ui->txtName->text());
     eventList.append(event);
     ReadWrite::write(event);
-
     ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 

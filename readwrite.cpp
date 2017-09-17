@@ -14,16 +14,16 @@ ReadWrite::ReadWrite(){
  */
 
 void ReadWrite::write(const Event& event) {
-  QFile file(QDir::currentPath() + "eventlist.txt");
+  QFile file(QDir::currentPath() + "/eventlist.txt");
   if(file.open(QIODevice::Append)) {
       QTextStream writeStream(&file);
-      writeStream<<event.getName();
+      writeStream<<event.getName() + "," + event.getDate() + "," + event.getCreator();
   }
   file.close();
 }
 
 void ReadWrite::read(const QString& filename) {
-  QFile file(QDir::currentPath() + "eventlist.txt");
+  QFile file("eventlist.txt");
   if(file.open(QIODevice::ReadOnly)) {
       QTextStream readStream(&file);
       while(!readStream.atEnd()) {
