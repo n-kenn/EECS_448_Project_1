@@ -216,6 +216,8 @@ void MainWindow::on_txtName_textChanged(/*const QString &arg1*/)
         ui->btnSelecExist->setEnabled(false);
     }
 }
+
+
 void MainWindow::on_rdAdd_clicked()
 {
     ui->btnListAttendanceNext->setEnabled(true);

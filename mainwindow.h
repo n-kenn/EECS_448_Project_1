@@ -201,6 +201,7 @@ private slots:
      */
     void on_rdAdd_clicked();
 
+
     /*!
      * \brief on_rdView_clicked
      *
