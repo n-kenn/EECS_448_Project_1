@@ -143,6 +143,9 @@ void MainWindow::on_btnNewTimeToggle_clicked()
 
 void MainWindow::on_btnExit_clicked()
 {
+    for (auto it = begin (eventList); it != end (eventList); ++it) {
+        ReadWrite::write(*it);
+    }
     QCoreApplication::quit();
 }
 
@@ -210,4 +213,9 @@ void MainWindow::on_rdAdd_clicked()
 void MainWindow::on_rdView_clicked()
 {
     ui->btnListAttendanceNext->setEnabled(true);
+}
+
+void MainWindow::on_lblName_destroyed()
+{
+
 }

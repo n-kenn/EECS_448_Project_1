@@ -18,7 +18,11 @@ void ReadWrite::write(const Event& event) {
   if(file.open(QIODevice::Append)) {
       QTextStream writeStream(&file);
       writeStream<<event.getName();
+
+    //  writeStream<<event.getDate();
+     // writeStream<<event.getTimeSlots();
   }
+
   file.close();
 }
 

@@ -209,6 +209,8 @@ private slots:
      */
     void on_rdView_clicked();
 
+    void on_lblName_destroyed();
+
 private:
     QVector<Event> eventList; /*!< The list of the events currently established. */
     Ui::MainWindow *ui; /*!< The "Main Window" object where all of the widgets reside.*/
