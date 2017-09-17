@@ -87,6 +87,8 @@ void MainWindow::on_btnNewTimeSave_clicked()
         }
     }
     Event event(ui->eventName->text(), ui->calendarWidget->selectedDate().toString(), ui->txtName->text(), timeSlots);
+    Attendee creator(ui->txtName->text(), timeSlots);
+    event.addAttendee(creator);
     eventList.append(event);
     ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
@@ -190,9 +192,10 @@ void MainWindow::on_btnAddAttendanceBack_clicked()
 void MainWindow::on_btnAddAttendanceSave_clicked()
 {
 
-    Attendee attendee(ui->txtName->text(), /*get timeslots from table*/);
-    Event.addAttendee(attendee.getName());
-    ui->stackedWidget->setCurrentWidget(ui->pageReturn);
+//    Attendee attendee(ui->txtName->text(), );
+//    event.addAttendee(attendee.getName());
+//    ReadWrite::write(event);
+//    ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 
 void MainWindow::on_btnViewAttendanceBack_clicked()

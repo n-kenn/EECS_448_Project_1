@@ -6,7 +6,6 @@ Event::Event(){
 
 Event::Event(const QString& name, const QString& date, const QString& creator, const QVector<QString>& timeSlots):
   name(name), date(date), creator(creator), timeSlots(timeSlots){
-    this->addAttendee(creator);
 }
 
 Event::~Event() {
@@ -29,7 +28,7 @@ QVector<QString> Event::getSlots() const {
   return timeSlots;
 }
 
-QVector<QString> Event::getAttendees() const {
+QVector<Attendee> Event::getAttendees() const {
   return attendees;
 }
 
@@ -41,10 +40,6 @@ void Event::removeSlot(const QString& slot) {
   this->timeSlots.erase(remove(this->timeSlots.begin(), this->timeSlots.end(), slot), this->timeSlots.end());
 }
 
-void Event::addAttendee(const QString& attendee) {
+void Event::addAttendee(const Attendee& attendee) {
   this->attendees.push_back(attendee);
-}
-
-void Event::removeAttendee(const QString& attendee) {
-  this->attendees.erase(remove(this->attendees.begin(), this->attendees.end(), attendee), this->attendees.end());
 }
