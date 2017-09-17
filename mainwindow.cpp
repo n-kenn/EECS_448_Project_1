@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "readwrite.h"
+#include "attendee.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -85,6 +86,7 @@ void MainWindow::on_btnSelecExist_clicked()
         ui->lstListEvents->addItem(e.getName());
     }
     ui->stackedWidget->setCurrentWidget(ui->pageListAttendance);
+    ui->listWidget->addItem(ReadWrite::read());
 }
 
 void MainWindow::on_btnNewDateBack_clicked()
@@ -116,8 +118,9 @@ void MainWindow::on_btnNewTimeSave_clicked()
         }
     }
     Event event(ui->eventName->text(), ui->calendarWidget->selectedDate().toString(), ui->txtName->text(), timeSlots);
+    Attendee creator(ui->txtName->text(), timeSlots);
+    event.addAttendee(creator);
     eventList.append(event);
-    ReadWrite::write(event);
     ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 
@@ -204,6 +207,7 @@ void MainWindow::on_btnListAttendanceBack_clicked()
 void MainWindow::on_btnListAttendanceNext_clicked()
 {
     if(ui->rdAdd->isChecked()){
+
            ui->stackedWidget->setCurrentWidget(ui->pageAddAttendance);
        }
        else if (ui->rdView->isChecked()){
@@ -230,7 +234,11 @@ void MainWindow::on_btnAddAttendanceBack_clicked()
 
 void MainWindow::on_btnAddAttendanceSave_clicked()
 {
-    ui->stackedWidget->setCurrentWidget(ui->pageReturn);
+
+//    Attendee attendee(ui->txtName->text(), );
+//    event.addAttendee(attendee.getName());
+//    ReadWrite::write(event);
+//    ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 
 void MainWindow::on_btnViewAttendanceBack_clicked()

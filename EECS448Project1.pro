@@ -27,13 +27,15 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp\
         event.cpp \
-    readwrite.cpp
+    readwrite.cpp \
+    attendee.cpp
 
 
 HEADERS += \
         mainwindow.h\
         event.h \
-    readwrite.h
+    readwrite.h \
+    attendee.h
 
 FORMS += \
         mainwindow.ui
