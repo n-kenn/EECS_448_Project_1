@@ -39,6 +39,33 @@ MainWindow::MainWindow(QWidget *parent) :
         timeCounter += 0.5;
         ui->gridLayout_17->addWidget(box);
     }
+    //Test Code for table widget of pageViewAttendance
+    QVector<QString> times;
+    QString time = "This time is: " + QString::number(i);
+    times.append(time);
+
+    for (int i = 0; i < 10; i++){
+        Event event("Test Name " +QString::number(i), QString::number(i),"Josh, the literal Event Creator", times);
+        event.addAttendee("Mark");
+        event.addAttendee("Steven");
+        eventList.append(event);
+    }
+    //End of Test Code
+
+     //Table Widget Initialization.
+     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+     ui->tableWidget->insertRow(0);
+     ui->tableWidget->insertColumn(0);
+     ui->tableWidget->insertColumn(1);
+     ui->tableWidget->insertColumn(2);
+     QTableWidgetItem *labelN = new QTableWidgetItem("Event Name");
+     QTableWidgetItem *labelC = new QTableWidgetItem("Creator");
+     QTableWidgetItem *labelA = new QTableWidgetItem("Attendees");
+     ui->tableWidget->setItem(0, 0, labelN);
+     ui->tableWidget->setItem(0, 1, labelC);
+     ui->tableWidget->setItem(0, 2, labelA);
+     ui->tableWidget->setRowCount(eventList.count());
+     ui->tableWidget->setCurrentCell(0,0);
 }
 
 MainWindow::~MainWindow()
@@ -53,6 +80,10 @@ void MainWindow::on_btnNew_clicked()
 
 void MainWindow::on_btnSelecExist_clicked()
 {
+
+    foreach (Event e, eventList){
+        ui->lstListEvents->addItem(e.getName());
+    }
     ui->stackedWidget->setCurrentWidget(ui->pageListAttendance);
 }
 
@@ -176,8 +207,20 @@ void MainWindow::on_btnListAttendanceNext_clicked()
            ui->stackedWidget->setCurrentWidget(ui->pageAddAttendance);
        }
        else if (ui->rdView->isChecked()){
-           ui->stackedWidget->setCurrentWidget(ui->pageViewAttendance);
-   }
+        foreach (Event e, eventList){
+               // QMessageBox::information(this, QString::number(ui->tableWidget->itemAt(ui->tableWidget->rowCount() + 1,0)->text());
+                QTableWidgetItem *newName = new QTableWidgetItem(e.getName());
+                QTableWidgetItem *newCre = new QTableWidgetItem(e.getCreator());
+                QTableWidgetItem *newAtt = new QTableWidgetItem(e.getAttendees());
+                ui->tableWidget->setItem(ui->tableWidget->currentRow() + 1,0,newName);
+                if (ui->tableWidget->currentColumn() == 2)
+                    ui->tableWidget->setCurrentCell(ui->tableWidget->currentRow() + 1, 0);
+                else
+                    ui->tableWidget->setCurrentCell(ui->tableWidget->currentRow(), ui->tableWidget->currentColumn() + 1);
+          }
+
+          ui->stackedWidget->setCurrentWidget(ui->pageViewAttendance);
+    }
 }
 
 void MainWindow::on_btnAddAttendanceBack_clicked()
