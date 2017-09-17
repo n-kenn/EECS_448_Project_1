@@ -1,6 +1,6 @@
 #ifndef EVENT_H
 #define EVENT_H
-
+#include "attendee.h"
 #include <QVector>
 #include <QString>
 
