@@ -1,6 +1,6 @@
 #ifndef EVENT_H
 #define EVENT_H
-
+#include "attendee.h"
 #include <QVector>
 #include <QString>
 
@@ -85,7 +85,7 @@ public:
    *
    * Post: None
    */
-  QVector<QString> getAttendees() const;
+  QVector<Attendee> getAttendees() const;
 
   /*!
    * \brief addSlot
@@ -115,24 +115,26 @@ public:
    *
    * Post: An attendee is added.
    */
-  void addAttendee(const QString& attendee);
+  void addAttendee(const Attendee& attendee);
 
   /*!
-   * \brief removeAttendee
-   * \param attendee
-   * \details
-   * Pre: An attendee is to be removed from the event.
+   * \brief getAttendeeNames
+   * \return QVector<QString> names
    *
-   * Post: An attendee is removed.
+   * Pre: None
+   *
+   * Post: None
+   *
+   * Note: names is a local variable declared inside of the function.
    */
-  void removeAttendee(const QString& attendee);
+  QVector<QString> getAttendeeNames() const;
 private:
   QString name; /*!< The name of the event.*/
   QString date; /*!< the date that the event is going to take place at.*/
   QString creator; /*!< The name of the creator.*/
   QVector<QString> timeSlots; /*!< The times the event will be taking place at. Multiple times in stagnated bunches might be used,
                                    so a vector is used. */
-  QVector<QString> attendees; /*!< The list of the attendees to an event.*/
+  QVector<Attendee> attendees; /*!< The list of the attendees to an event.*/
 };
 
 #endif

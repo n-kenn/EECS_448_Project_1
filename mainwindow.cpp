@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "readwrite.h"
+#include "attendee.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -39,6 +40,20 @@ MainWindow::MainWindow(QWidget *parent) :
         timeCounter += 0.5;
         ui->gridLayout_17->addWidget(box);
     }
+    //Test Code for table widget of pageViewAttendance
+    QVector<QString> times;
+    QString time = "Nonya";
+    times.append(time);
+
+    for (int i = 0; i < 10; i++){
+        Event event("Test Name " +QString::number(i), QString::number(i),"Josh, the literal Event Creator", times);
+        Attendee att("Mark", times), att2("Steven", times);
+        event.addAttendee(att);
+        event.addAttendee(att2);
+        eventList.append(event);
+    }
+    //End of Test Code
+
 }
 
 MainWindow::~MainWindow()
@@ -53,6 +68,10 @@ void MainWindow::on_btnNew_clicked()
 
 void MainWindow::on_btnSelecExist_clicked()
 {
+    ui->lstListEvents->clear();
+    foreach (Event e, eventList){
+        ui->lstListEvents->addItem(e.getName());
+    }
     ui->stackedWidget->setCurrentWidget(ui->pageListAttendance);
 }
 
@@ -85,6 +104,8 @@ void MainWindow::on_btnNewTimeSave_clicked()
         }
     }
     Event event(ui->eventName->text(), ui->calendarWidget->selectedDate().toString(), ui->txtName->text(), timeSlots);
+    Attendee creator(ui->txtName->text(), timeSlots);
+    event.addAttendee(creator);
     eventList.append(event);
     ReadWrite::write(event);
     ui->stackedWidget->setCurrentWidget(ui->pageReturn);
@@ -154,9 +175,6 @@ void MainWindow::on_btnNewTimeToggle_clicked()
 
 void MainWindow::on_btnExit_clicked()
 {
-    foreach(Event event, eventList) {
-        ReadWrite::write(event);
-    }
     QCoreApplication::quit();
 }
 
@@ -173,11 +191,51 @@ void MainWindow::on_btnListAttendanceBack_clicked()
 void MainWindow::on_btnListAttendanceNext_clicked()
 {
     if(ui->rdAdd->isChecked()){
+
            ui->stackedWidget->setCurrentWidget(ui->pageAddAttendance);
        }
        else if (ui->rdView->isChecked()){
-           ui->stackedWidget->setCurrentWidget(ui->pageViewAttendance);
-   }
+        //Zero Out Table on Page Load.
+        ui->tableWidget->clear();
+        ui->tableWidget->setRowCount(0);
+        ui->tableWidget->setColumnCount(0);
+
+        //Finds event to be viewed from current event.
+        Event currentEventE;
+        foreach (Event e, eventList){
+            if (e.getName() == currentEvent){
+                currentEventE = e;
+                break;
+            }
+        }
+
+        //Initialize header
+        ui->tableWidget->insertRow(0);
+        ui->tableWidget->insertColumn(0);
+        ui->tableWidget->insertColumn(1);
+        QTableWidgetItem *labelA = new QTableWidgetItem("Attendees");
+        QTableWidgetItem *labelT = new QTableWidgetItem("Times");
+        ui->tableWidget->setItem(0, 0, labelA);
+        ui->tableWidget->setItem(0, 1, labelT);
+
+        //Set Row Count for the amount of attendees, and read everything into the table.
+        ui->tableWidget->setRowCount(currentEventE.getAttendees().count() + 1);
+        ui->tableWidget->setCurrentCell(1,0);
+        for (Attendee a: currentEventE.getAttendees()){
+             QString allSlots;
+             QTableWidgetItem *newAtt = new QTableWidgetItem(a.getName());
+             for (QString time: a.getSlots()){
+                 allSlots.append(time + " ");
+             }
+             QTableWidgetItem *newTim = new QTableWidgetItem(allSlots);
+             ui->tableWidget->setItem(ui->tableWidget->currentRow(),0,newAtt);
+             ui->tableWidget->setItem(ui->tableWidget->currentRow(),1,newTim);
+             ui->tableWidget->setCurrentCell(ui->tableWidget->currentRow() + 1, 0);
+        }
+
+
+          ui->stackedWidget->setCurrentWidget(ui->pageViewAttendance);
+    }
 }
 
 void MainWindow::on_btnAddAttendanceBack_clicked()
@@ -187,7 +245,11 @@ void MainWindow::on_btnAddAttendanceBack_clicked()
 
 void MainWindow::on_btnAddAttendanceSave_clicked()
 {
-    ui->stackedWidget->setCurrentWidget(ui->pageReturn);
+
+//    Attendee attendee(ui->txtName->text(), );
+//    event.addAttendee(attendee.getName());
+//    ReadWrite::write(event);
+//    ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 
 void MainWindow::on_btnViewAttendanceBack_clicked()
@@ -241,3 +303,8 @@ void MainWindow::on_eventName_textChanged(/*const QString &arg1*/)
 }
 //set booleans flags and check those to see what they are at the time
 //is it being selected
+
+void MainWindow::on_lstListEvents_itemClicked(QListWidgetItem *item)
+{
+    currentEvent = item->text();
+}
