@@ -116,6 +116,17 @@ public:
    * Post: An attendee is added.
    */
   void addAttendee(const Attendee& attendee);
+
+  /*!
+   * \brief getAttendeeNames
+   * \return QVector<QString> names
+   *
+   * Pre: None
+   *
+   * Post: None
+   *
+   * Note: names is a local variable declared inside of the function.
+   */
   QVector<QString> getAttendeeNames() const;
 private:
   QString name; /*!< The name of the event.*/

@@ -31,7 +31,6 @@
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
        <number>0</number>
-       <number>5</number>
       </property>
       <widget class="QWidget" name="pageStart">
        <layout class="QGridLayout" name="gridLayout_2">
@@ -329,9 +328,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>1106</width>
-               <height>568</height>
-               <height>595</height>
+               <width>18</width>
+               <height>18</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_17"/>
@@ -585,7 +583,14 @@
            </widget>
           </item>
           <item row="1" column="1" colspan="6">
-           <widget class="QTableWidget" name="tableWidget"/>
+           <widget class="QTableWidget" name="tableWidget">
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
