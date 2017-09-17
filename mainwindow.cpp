@@ -290,21 +290,24 @@ void MainWindow::on_rdView_clicked()
     ui->btnListAttendanceNext->setEnabled(true);
 }
 
+
+
 void MainWindow::on_eventName_textChanged(/*const QString &arg1*/)
 {
-    if (ui->txtName->text() != ""){
-        ui->btnNew->setEnabled(true);
-        ui->btnSelecExist->setEnabled(true);
+
+    if (ui->txtName->text() == ""){
+        ui->btnNewDateBack->setEnabled(true);
+        ui->btnNewDateNext->setEnabled(false);
     }
     else{
-        ui->btnNew->setEnabled(false);
-        ui->btnSelecExist->setEnabled(false);
+        ui->btnNewDateNext->setEnabled(true);
+        ui->btnNewDateBack->setEnabled(true);
     }
+
 }
-//set booleans flags and check those to see what they are at the time
-//is it being selected
 
 void MainWindow::on_lstListEvents_itemClicked(QListWidgetItem *item)
 {
     currentEvent = item->text();
 }
+
