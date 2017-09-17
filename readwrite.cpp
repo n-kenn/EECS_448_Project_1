@@ -20,17 +20,17 @@ void ReadWrite::write(const Event& event) {
       writeStream<< "[event] " + event.getName() +"\n";
       writeStream<< "[creator] " + event.getCreator() + "\n";
       writeStream<< "[date] " + event.getDate() + "\n";
-      QString timeSlots;
+      writeStream<<"[timeSlots] ";
       foreach(QString time, event.getSlots())
       {
-          timeSlots += (time + ",");
+          writeStream<<time;
       }
-      writeStream<< "[timeSlots] " + timeSlots + "\n\n";
+      writeStream<<"\n\n";
   }
   file.close();
 }
 
-void ReadWrite::read(/*const QString& filename*/) {
+void ReadWrite::read(const QString& filename) {
   QFile file(QDir::currentPath() + "eventlist.txt");
   if(file.open(QIODevice::ReadOnly)) {
       QTextStream readStream(&file);

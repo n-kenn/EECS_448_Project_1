@@ -1,7 +1,6 @@
 #include "event.h"
-#include <algorithm> //for removing slots and attendees from the event
 
-Event::Event() {
+Event::Event(){
 
 }
 
@@ -12,10 +11,6 @@ Event::Event(const QString& name, const QString& date, const QString& creator, c
 
 Event::~Event() {
 
-}
-
-void Event::setName(const QString& name) {
-  this->name = name;
 }
 
 QString Event::getName() const {
