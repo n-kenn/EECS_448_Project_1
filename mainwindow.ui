@@ -30,8 +30,7 @@
     <item row="0" column="1">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="pageStart">
        <layout class="QGridLayout" name="gridLayout_2">
@@ -329,11 +328,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>98</width>
-               <width>1120</width>
-               <height>583</height>
-               <width>1110</width>
-               <height>611</height>
+               <width>1106</width>
+               <height>595</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_17"/>

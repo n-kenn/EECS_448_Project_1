@@ -14,7 +14,7 @@ ReadWrite::ReadWrite(){
  */
 
 void ReadWrite::write(const Event& event) {
-  QFile file(":/eventlist.txt");
+  QFile file("eventlist.txt");
   if(file.open(QIODevice::Append | QIODevice::WriteOnly)) {
       QTextStream writeStream(&file);
       writeStream<< "[event] " + event.getName() +"\n";
@@ -29,14 +29,13 @@ void ReadWrite::write(const Event& event) {
   file.close();
 }
 
-void ReadWrite::read(const QString& filename) {
-  QFile file(QDir::currentPath() + "eventlist.txt");
+QString ReadWrite::read() {
+  QFile file("eventlist.txt");
+  QString lines;
   if(file.open(QIODevice::ReadOnly)) {
       QTextStream readStream(&file);
-      while(!readStream.atEnd()) {
-        QString line = readStream.readLine();
-        //todo: add the read event to the eventlist once we know how the line will be parsed.
-      }
+      lines = readStream.readAll();
+      file.close();
   }
-  file.close();
+  return lines;
 }

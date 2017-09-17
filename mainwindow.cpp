@@ -54,6 +54,7 @@ void MainWindow::on_btnNew_clicked()
 void MainWindow::on_btnSelecExist_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->pageListAttendance);
+    ui->listWidget->addItem(ReadWrite::read());
 }
 
 void MainWindow::on_btnNewDateBack_clicked()
@@ -86,7 +87,6 @@ void MainWindow::on_btnNewTimeSave_clicked()
     }
     Event event(ui->eventName->text(), ui->calendarWidget->selectedDate().toString(), ui->txtName->text(), timeSlots);
     eventList.append(event);
-    ReadWrite::write(event);
     ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 
