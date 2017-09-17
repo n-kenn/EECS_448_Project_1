@@ -3,11 +3,11 @@
 
 #include <QObject>
 #include <QVector>
-class attendee
+class Attendee
 {
 public:
-    attendee();
-    attendee(const QString& name, const QVector<QString>& timeSlots);
+    Attendee();
+    Attendee(const QString& name, const QVector<QString>& timeSlots);
     QString getName() const;
     QVector<QString> getSlots() const;
 private:

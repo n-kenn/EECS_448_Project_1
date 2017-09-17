@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "readwrite.h"
+#include "attendee.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -173,6 +174,7 @@ void MainWindow::on_btnListAttendanceBack_clicked()
 void MainWindow::on_btnListAttendanceNext_clicked()
 {
     if(ui->rdAdd->isChecked()){
+
            ui->stackedWidget->setCurrentWidget(ui->pageAddAttendance);
        }
        else if (ui->rdView->isChecked()){
@@ -187,6 +189,9 @@ void MainWindow::on_btnAddAttendanceBack_clicked()
 
 void MainWindow::on_btnAddAttendanceSave_clicked()
 {
+
+    Attendee attendee(ui->txtName->text(), /*get timeslots from table*/);
+    Event.addAttendee(attendee.getName());
     ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 
