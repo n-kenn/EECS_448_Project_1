@@ -1,6 +1,5 @@
 #include "event.h"
 #include "readwrite.h"
-#include <QDir>
 #include <QFile>
 #include <QTextStream>
 
@@ -20,11 +19,12 @@ void ReadWrite::write(const Event& event) {
       writeStream<< "[event] " + event.getName() +"\n";
       writeStream<< "[creator] " + event.getCreator() + "\n";
       writeStream<< "[date] " + event.getDate() + "\n";
-      writeStream<<"[timeSlots] ";
+      writeStream<< "[timeSlots] ";
       foreach(QString time, event.getSlots())
       {
-          writeStream<<time;
+          writeStream<<time + ",";
       }
+      writeStream<< "\n\n";
   }
   file.close();
 }
