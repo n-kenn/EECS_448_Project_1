@@ -54,19 +54,6 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     //End of Test Code
 
-     //Table Widget Initialization.
-     ui->tableWidget->insertRow(0);
-     ui->tableWidget->insertColumn(0);
-     ui->tableWidget->insertColumn(1);
-     ui->tableWidget->insertColumn(2);
-     QTableWidgetItem *labelN = new QTableWidgetItem("Event Name");
-     QTableWidgetItem *labelC = new QTableWidgetItem("Creator");
-     QTableWidgetItem *labelA = new QTableWidgetItem("Attendees");
-     ui->tableWidget->setItem(0, 0, labelN);
-     ui->tableWidget->setItem(0, 1, labelC);
-     ui->tableWidget->setItem(0, 2, labelA);
-     ui->tableWidget->setRowCount(eventList.count() + 1);
-     ui->tableWidget->setCurrentCell(1,0);
 }
 
 MainWindow::~MainWindow()
@@ -81,7 +68,7 @@ void MainWindow::on_btnNew_clicked()
 
 void MainWindow::on_btnSelecExist_clicked()
 {
-
+    ui->lstListEvents->clear();
     foreach (Event e, eventList){
         ui->lstListEvents->addItem(e.getName());
     }
@@ -208,21 +195,44 @@ void MainWindow::on_btnListAttendanceNext_clicked()
            ui->stackedWidget->setCurrentWidget(ui->pageAddAttendance);
        }
        else if (ui->rdView->isChecked()){
+        //Zero Out Table on Page Load.
+        ui->tableWidget->clear();
+        ui->tableWidget->setRowCount(0);
+        ui->tableWidget->setColumnCount(0);
+
+        //Finds event to be viewed from current event.
+        Event currentEventE;
         foreach (Event e, eventList){
+            if (e.getName() == currentEvent){
+                currentEventE = e;
+                break;
+            }
+        }
 
-                QTableWidgetItem *newName = new QTableWidgetItem(e.getName());
-                QTableWidgetItem *newCre = new QTableWidgetItem(e.getCreator());
-                QString allNames = "";
-                for (QString name: e.getAttendeeNames()){
-                    allNames.append(name + " ");
-                }
-                QTableWidgetItem *newAtt = new QTableWidgetItem(allNames);
-                ui->tableWidget->setItem(ui->tableWidget->currentRow(),0,newName);
-                ui->tableWidget->setItem(ui->tableWidget->currentRow(),1,newCre);
-                ui->tableWidget->setItem(ui->tableWidget->currentRow(),2,newAtt);
-                ui->tableWidget->setCurrentCell(ui->tableWidget->currentRow() + 1, 0); //If all else fails, come back to here.
+        //Initialize header
+        ui->tableWidget->insertRow(0);
+        ui->tableWidget->insertColumn(0);
+        ui->tableWidget->insertColumn(1);
+        QTableWidgetItem *labelA = new QTableWidgetItem("Attendees");
+        QTableWidgetItem *labelT = new QTableWidgetItem("Times");
+        ui->tableWidget->setItem(0, 0, labelA);
+        ui->tableWidget->setItem(0, 1, labelT);
 
-          }
+        //Set Row Count for the amount of attendees, and read everything into the table.
+        ui->tableWidget->setRowCount(currentEventE.getAttendees().count() + 1);
+        ui->tableWidget->setCurrentCell(1,0);
+        for (Attendee a: currentEventE.getAttendees()){
+             QString allSlots;
+             QTableWidgetItem *newAtt = new QTableWidgetItem(a.getName());
+             for (QString time: a.getSlots()){
+                 allSlots.append(time + " ");
+             }
+             QTableWidgetItem *newTim = new QTableWidgetItem(allSlots);
+             ui->tableWidget->setItem(ui->tableWidget->currentRow(),0,newAtt);
+             ui->tableWidget->setItem(ui->tableWidget->currentRow(),1,newTim);
+             ui->tableWidget->setCurrentCell(ui->tableWidget->currentRow() + 1, 0);
+        }
+
 
           ui->stackedWidget->setCurrentWidget(ui->pageViewAttendance);
     }
@@ -276,4 +286,9 @@ void MainWindow::on_rdAdd_clicked()
 void MainWindow::on_rdView_clicked()
 {
     ui->btnListAttendanceNext->setEnabled(true);
+}
+
+void MainWindow::on_lstListEvents_itemClicked(QListWidgetItem *item)
+{
+    currentEvent = item->text();
 }
