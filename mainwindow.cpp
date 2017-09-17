@@ -71,8 +71,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    foreach (Event e, eventList)
+    {
+        ReadWrite::write(e);
+    }
     delete ui;
 }
+
 
 void MainWindow::on_btnNew_clicked()
 {

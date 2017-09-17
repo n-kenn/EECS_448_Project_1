@@ -26,6 +26,7 @@ public:
     ~MainWindow();
 
 private slots:
+
     /*!
      * \brief on_btnNew_clicked
      *
