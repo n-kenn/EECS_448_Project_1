@@ -18,7 +18,6 @@ void ReadWrite::write(const Event& event) {
   if(file.open(QIODevice::Append)) {
       QTextStream writeStream(&file);
       writeStream<<event.getName() + "," + event.getDate() + "," + event.getCreator();
-=======
   QFile file(/*QDir::currentPath() +*/ "eventlist.txt");
   if(file.open(QIODevice::Append | QIODevice::WriteOnly)) {
       QTextStream writeStream(&file);
@@ -33,14 +32,11 @@ void ReadWrite::write(const Event& event) {
       writeStream<< "[timeSlots] " + timeSlots + "\n\n";
   }
   file.close();
+    }
 }
 
 void ReadWrite::read(const QString& filename) {
-  QFile file("eventlist.txt");
-=======
-void ReadWrite::read(/*const QString& filename*/) {
   QFile file(QDir::currentPath() + "eventlist.txt");
->>>>>>> origin/NoahBranch
   if(file.open(QIODevice::ReadOnly)) {
       QTextStream readStream(&file);
       while(!readStream.atEnd()) {
