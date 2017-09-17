@@ -191,6 +191,7 @@ private slots:
      */
     void on_txtName_textChanged(/*const QString &arg1*/);
 
+    void on_eventName_textChanged(/*const QString &arg1*/);
 
     /*!
      * \brief on_rdAdd_clicked
@@ -201,6 +202,7 @@ private slots:
      */
     void on_rdAdd_clicked();
 
+
     /*!
      * \brief on_rdView_clicked
      *
@@ -209,6 +211,9 @@ private slots:
      * Post: btnLIstAttendanceNext will be enabled.
      */
     void on_rdView_clicked();
+
+    //Anna: I think that this is unecessary so I took it out
+   // void on_eventName_textChanged(const QString &arg1);
 
     void on_lstListEvents_itemClicked(QListWidgetItem *item);
 

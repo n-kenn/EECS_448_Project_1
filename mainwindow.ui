@@ -136,6 +136,34 @@
        <layout class="QGridLayout" name="gridLayout_13">
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_12">
+          <item row="3" column="1">
+           <widget class="QLabel" name="label_6">
+            <property name="font">
+             <font>
+              <pointsize>26</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Select A Time</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <widget class="QPushButton" name="btnNewDateNext">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Next</string>
+            </property>
+           </widget>
+          </item>
           <item row="1" column="0" rowspan="2" colspan="3">
            <widget class="QLineEdit" name="eventName">
             <property name="toolTip">
@@ -169,15 +197,11 @@
           </item>
           <item row="5" column="0">
            <widget class="QPushButton" name="btnNewDateBack">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="text">
              <string>Back</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="2">
-           <widget class="QPushButton" name="btnNewDateNext">
-            <property name="text">
-             <string>Next</string>
             </property>
            </widget>
           </item>
@@ -196,24 +220,6 @@
               <month>9</month>
               <day>17</day>
              </date>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QLabel" name="label_6">
-            <property name="font">
-             <font>
-              <pointsize>26</pointsize>
-              <weight>75</weight>
-              <italic>false</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Select A Time</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
@@ -299,6 +305,9 @@
           </item>
           <item row="3" column="0" colspan="5">
            <widget class="QPushButton" name="btnNewTimeSave">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -328,8 +337,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>18</width>
-               <height>18</height>
+               <width>1097</width>
+               <height>554</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_17"/>
@@ -409,7 +418,7 @@
           <item row="2" column="2" colspan="2">
            <widget class="QPushButton" name="btnListAttendanceNext">
             <property name="enabled">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <property name="toolTip">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Depending on which radio button you have selected, you will go to a different place in the program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>

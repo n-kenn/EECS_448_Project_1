@@ -278,6 +278,8 @@ void MainWindow::on_txtName_textChanged(/*const QString &arg1*/)
         ui->btnSelecExist->setEnabled(false);
     }
 }
+
+
 void MainWindow::on_rdAdd_clicked()
 {
     ui->btnListAttendanceNext->setEnabled(true);
@@ -288,7 +290,24 @@ void MainWindow::on_rdView_clicked()
     ui->btnListAttendanceNext->setEnabled(true);
 }
 
+
+
+void MainWindow::on_eventName_textChanged(/*const QString &arg1*/)
+{
+
+    if (ui->txtName->text() == ""){
+        ui->btnNewDateBack->setEnabled(true);
+        ui->btnNewDateNext->setEnabled(false);
+    }
+    else{
+        ui->btnNewDateNext->setEnabled(true);
+        ui->btnNewDateBack->setEnabled(true);
+    }
+
+}
+
 void MainWindow::on_lstListEvents_itemClicked(QListWidgetItem *item)
 {
     currentEvent = item->text();
 }
+
