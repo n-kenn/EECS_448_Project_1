@@ -1,1 +1,21 @@
-josh bbq,Sun Sep 17 2017,joshjosh,Sun Sep 17 2017,josh
+josh bbq,Sun Sep 17 2017,joshjosh,Sun Sep 17 2017,josh[event] josh
+[creator] josh
+[date] Sun Sep 17 2017
+[timeSlots] 00:00:0000:30:0001:00:00
+
+josh[event] josh
+[creator] josh
+[date] Sun Sep 17 2017
+[timeSlots] 00:00:0000:30:0001:00:00
+
+josh[event] josh
+[creator] josh
+[date] Sun Sep 17 2017
+[timeSlots] 00:00:0000:30:0001:00:00
+
+josh[event] josh
+[creator] josh
+[date] Sun Sep 17 2017
+[timeSlots] 00:00:0000:30:0001:00:00
+
+josh

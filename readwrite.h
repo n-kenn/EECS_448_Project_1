@@ -32,9 +32,7 @@ public:
    * Post: A file is read. For this specific purpose, it is used to read events.
    */
   static void read(const QString& filename);
-  static void read(/*const QString& filename*/);
 private:
-
 };
 
 #endif

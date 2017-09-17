@@ -154,6 +154,9 @@ void MainWindow::on_btnNewTimeToggle_clicked()
 
 void MainWindow::on_btnExit_clicked()
 {
+    foreach(Event event, eventList) {
+        ReadWrite::write(event);
+    }
     QCoreApplication::quit();
 }
 

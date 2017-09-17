@@ -1,7 +1,6 @@
 #include "event.h"
-#include <algorithm> //for removing slots and attendees from the event
 
-Event::Event() {
+Event::Event(){
 
 }
 
