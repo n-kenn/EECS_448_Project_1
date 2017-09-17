@@ -2,6 +2,7 @@
 #define READWRITE_H
 
 #include <QString>
+#include "event.h"
 
 class ReadWrite {
 public:
@@ -25,13 +26,13 @@ public:
 
   /*!
    * \brief read
-   * \param filename
+   * \param eventList
    *
    * Pre: None
    *
    * Post: A file is read. For this specific purpose, it is used to read events.
    */
-  static QString read();
+   static void read(QVector<Event>& eventList);
 private:
 };
 

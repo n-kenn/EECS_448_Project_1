@@ -6,9 +6,11 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    currentToggleNew(false)
+    currentToggleNew(false),
+    currentToggleView(false)
 {
     ui->setupUi(this);
+    ReadWrite::read(eventList);
     float timeCounter = 0;
     for (int i = 0; i < 48; i++){
         QCheckBox *box = new QCheckBox;
@@ -40,9 +42,9 @@ MainWindow::MainWindow(QWidget *parent) :
         timeCounter += 0.5;
         ui->gridLayout_17->addWidget(box);
     }
-    //Test Code for table widget of pageViewAttendance
+    /*/Test Code for table widget of pageViewAttendance
     QVector<QString> times;
-    QString time = "Nonya";
+    QString time = "14:00";
     times.append(time);
 
     for (int i = 0; i < 10; i++){
@@ -52,14 +54,19 @@ MainWindow::MainWindow(QWidget *parent) :
         event.addAttendee(att2);
         eventList.append(event);
     }
-    //End of Test Code
+    //End of Test Code*/
 
 }
 
 MainWindow::~MainWindow()
 {
+    foreach (Event e, eventList)
+    {
+        ReadWrite::write(e);
+    }
     delete ui;
 }
+
 
 void MainWindow::on_btnNew_clicked()
 {
@@ -107,7 +114,7 @@ void MainWindow::on_btnNewTimeSave_clicked()
     Attendee creator(ui->txtName->text(), timeSlots);
     event.addAttendee(creator);
     eventList.append(event);
-    ReadWrite::write(event);
+
     ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 
@@ -311,3 +318,15 @@ void MainWindow::on_lstListEvents_itemClicked(QListWidgetItem *item)
     currentEvent = item->text();
 }
 
+void MainWindow::on_btnViewAttendanceToggle_clicked()
+{
+    if(ui->tableWidget->rowCount() != 1){
+        for(int i = 1; i < ui->tableWidget->rowCount(); i++){
+            QTableWidgetItem* item = ui->tableWidget->item(i, 1);
+            QList<QString> itemS = item->text().split(" ");
+            foreach(QString time, itemS){
+                //Add Conversion code here. A toggle is already in place called currentToggleView
+            }
+        }
+    }
+}
