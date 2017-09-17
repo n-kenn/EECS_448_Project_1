@@ -72,7 +72,19 @@ void MainWindow::on_btnNewTimeBack_clicked()
 
 void MainWindow::on_btnNewTimeSave_clicked()
 {
-    Event event(ui->eventName->text(), ui->calendarWidget->selectedDate().toString(), ui->txtName->text());
+    QVector<QString> timeSlots;
+    QWidget* list = ui->scrollArea->widget();
+    QObjectList newList = list->children();
+    newList.removeFirst(); //Removes the Grid from the list.
+    foreach(QObject *box, newList)
+    {
+        QCheckBox *thatBox = qobject_cast<QCheckBox*>(box);
+        if (thatBox->isChecked())
+        {
+            timeSlots.append(thatBox->text());
+        }
+    }
+    Event event(ui->eventName->text(), ui->calendarWidget->selectedDate().toString(), ui->txtName->text(), timeSlots);
     eventList.append(event);
     ReadWrite::write(event);
     ui->stackedWidget->setCurrentWidget(ui->pageReturn);
@@ -190,7 +202,7 @@ void MainWindow::on_btnViewAttendanceQuit_clicked()
     QCoreApplication::quit();
 }
 
-void MainWindow::on_txtName_textChanged(const QString &arg1)
+void MainWindow::on_txtName_textChanged(/*const QString &arg1*/)
 {
     if (ui->txtName->text() != ""){
         ui->btnNew->setEnabled(true);

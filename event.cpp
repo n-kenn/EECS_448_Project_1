@@ -5,8 +5,8 @@ Event::Event() {
 
 }
 
-Event::Event(const QString& name, const QString& date, const QString& creator):
-  name(name), date(date), creator(creator) {
+Event::Event(const QString& name, const QString& date, const QString& creator, const QVector<QString>& timeSlots):
+  name(name), date(date), creator(creator), timeSlots(timeSlots){
     this->addAttendee(creator);
 }
 
