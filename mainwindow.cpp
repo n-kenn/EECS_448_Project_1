@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     currentToggleNew(false)
 {
     ui->setupUi(this);
+    ReadWrite::read(eventList);
     float timeCounter = 0;
     for (int i = 0; i < 48; i++){
         QCheckBox *box = new QCheckBox;

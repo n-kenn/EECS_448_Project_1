@@ -2,6 +2,7 @@
 #include "readwrite.h"
 #include <QFile>
 #include <QTextStream>
+#include <QMessageBox> //for debug
 
 ReadWrite::ReadWrite(){
     //empty constructor
@@ -42,13 +43,51 @@ void ReadWrite::write(const Event& event) {
   file.close();
 }
 
-QString ReadWrite::read() {
+void ReadWrite::read(QVector<Event>& eventList) {
   QFile file("eventlist.txt");
   QString lines = "test";
-  if(file.open(QIODevice::ReadOnly)) {
+  QString eventName;
+  QString creatorName;
+  QString date;
+  QString times;
+  QVector<QString> timeSlots;
+
+  QString att_name;
+  QString att_times;
+
+  if(file.open(QIODevice::ReadOnly))
+  {
+
+
+
       QTextStream readStream(&file);
-      lines = readStream.readAll();
-      file.close();
-  }
-  return lines;
+      while (!readStream.atEnd())
+      {
+          lines = readStream.readLine();
+          if (lines.indexOf("[event]") == 0)
+          {
+              eventName = lines.right(lines.size()-8);
+              lines = readStream.readLine();
+              creatorName = lines.right(lines.size()-10);
+              lines = readStream.readLine();
+              date = lines.right(lines.size()-7);
+              lines = readStream.readLine();
+              times = lines.right(lines.size()-12);
+
+
+              while (times.count(",") > 1)
+              {
+                  timeSlots.append(times.left(times.indexOf(",")));
+                  times = times.right(times.size() - (times.indexOf(",")+1));
+
+              }
+
+              Event newEvent(eventName, creatorName, date, timeSlots);
+              eventList.append(newEvent);
+              timeSlots.clear();
+          }
+       }
+      file.remove();
+    }
+
 }
