@@ -22,12 +22,13 @@ public:
    * \param name
    * \param date
    * \param creator
+   * \param timeSlots
    *\details
    * Pre: None
    *
    * Post: An event is created with multiple parts initialized.
    */
-  Event(const QString& name, const QString& date, const QString& creator);
+  Event(const QString& name, const QString& date, const QString& creator, const QVector<QString>& timeSlots);
 
   /*!
   * \brief Event - Deconstructor
