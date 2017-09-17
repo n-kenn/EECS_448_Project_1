@@ -90,6 +90,7 @@ void MainWindow::on_btnNewTimeSave_clicked()
     Attendee creator(ui->txtName->text(), timeSlots);
     event.addAttendee(creator);
     eventList.append(event);
+    ReadWrite::write(event);
     ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 
@@ -157,9 +158,6 @@ void MainWindow::on_btnNewTimeToggle_clicked()
 
 void MainWindow::on_btnExit_clicked()
 {
-    foreach(Event event, eventList) {
-        ReadWrite::write(event);
-    }
     QCoreApplication::quit();
 }
 

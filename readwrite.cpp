@@ -31,7 +31,7 @@ void ReadWrite::write(const Event& event) {
 
 QString ReadWrite::read() {
   QFile file("eventlist.txt");
-  QString lines;
+  QString lines = "test";
   if(file.open(QIODevice::ReadOnly)) {
       QTextStream readStream(&file);
       lines = readStream.readAll();
