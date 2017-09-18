@@ -30,7 +30,7 @@
     <item row="0" column="1">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="pageStart">
        <layout class="QGridLayout" name="gridLayout_2">
@@ -337,8 +337,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>16</width>
-               <height>16</height>
+               <width>18</width>
+               <height>18</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_17"/>
@@ -412,6 +412,9 @@
            <widget class="QRadioButton" name="rdAdd">
             <property name="text">
              <string>Add Attendance</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -562,8 +565,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>1250</width>
-               <height>596</height>
+               <width>1240</width>
+               <height>601</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_18"/>

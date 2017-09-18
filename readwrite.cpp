@@ -21,26 +21,34 @@ void ReadWrite::write(const Event& event) {
       writeStream<< "[creator] " + event.getCreator() + "\n";
       writeStream<< "[date] " + event.getDate() + "\n";
       writeStream<< "[timeSlots] ";
-      foreach(QString time, event.getSlots())
-      {
-          writeStream<<time + ",";
+      foreach(QString time, event.getSlots()){
+          if (time.left(2).toInt() == 0){
+              time.remove(0, 2);
+              time.prepend(QString::number(12));
+          }
+          if (time.left(2).toInt() > 12)
+              time = QString::number((time.left(2).toInt()-12)) + time.right(6) + " PM";
+          if (time.contains("AM") || time.contains("PM"))
+            writeStream<<time + ",";
+          else{
+              if (time.left(2).toInt() < 13)
+                writeStream<<time + " AM,";
+                else
+                      writeStream<<time + " PM,";
+          }
       }
       writeStream << "\n";
       if (event.getAttendees().size() > 0)
       {
           foreach(Attendee att, event.getAttendees())
           {
-              writeStream<< "[attendee] " + att.getName() + "\n";
-              writeStream<< "[att_timeSlots] ";
-              foreach(QString time, att.getSlots())
-              {
-                  writeStream<<time + ",";
-              }
-          }
-      }
-      writeStream<< "\n\n";
+              writeStream<<"[attendee] " + att.getName() + "\n";
+              writeStream<<"[att_timeSlots] ";
+              writeStream<< "\n\n";
+            }
+        file.close();
+        }
   }
-  file.close();
 }
 
 void ReadWrite::read(QVector<Event>& eventList) {
@@ -102,5 +110,4 @@ void ReadWrite::read(QVector<Event>& eventList) {
        }
       file.remove();
     }
-
 }

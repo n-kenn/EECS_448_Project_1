@@ -47,20 +47,6 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->gridLayout_17->addWidget(box);
         ui->gridLayout_18->addWidget(box2);
     }
-    /*/Test Code for table widget of pageViewAttendance
-    QVector<QString> times;
-    QString time = "14:00";
-    times.append(time);
-
-    for (int i = 0; i < 10; i++){
-        Event event("Test Name " +QString::number(i), QString::number(i),"Josh, the literal Event Creator", times);
-        Attendee att("Mark", times), att2("Steven", times);
-        event.addAttendee(att);
-        event.addAttendee(att2);
-        eventList.append(event);
-    }
-    //End of Test Code*/
-
 }
 
 MainWindow::~MainWindow()
@@ -220,7 +206,7 @@ void MainWindow::on_btnListAttendanceNext_clicked()
             }
         }
         QVector<QString> times = currentEventE.getSlots();
-        for(QString time : times){
+        foreach(QString time, times){
             foreach(QObject* obj, newList){
                 QCheckBox *thatBox = qobject_cast<QCheckBox*>(obj);
                 //Weird Behavior occurs here again.
@@ -283,7 +269,7 @@ void MainWindow::on_btnListAttendanceNext_clicked()
         //Set Row Count for the amount of attendees, and read everything into the table.
         ui->tableWidget->setRowCount(currentEventE.getAttendees().count() + 1);
         ui->tableWidget->setCurrentCell(1,0);
-        for (Attendee a: currentEventE.getAttendees()){
+        foreach (Attendee a, currentEventE.getAttendees()){
              QString allSlots;
              QTableWidgetItem *newAtt = new QTableWidgetItem(a.getName());
              for (QString time: a.getSlots()){
@@ -293,6 +279,7 @@ void MainWindow::on_btnListAttendanceNext_clicked()
                  else{
                      allSlots.append(time);
                  }
+
              }
              QTableWidgetItem *newTim = new QTableWidgetItem(allSlots);
              ui->tableWidget->setItem(ui->tableWidget->currentRow(),0,newAtt);
@@ -312,11 +299,27 @@ void MainWindow::on_btnAddAttendanceBack_clicked()
 
 void MainWindow::on_btnAddAttendanceSave_clicked()
 {
+    QVector<QString> timeSlots;
+    QWidget* list = ui->scrollArea_2->widget();
+    QObjectList newList = list->children();
+    newList.removeFirst(); //Removes the Grid from the list.
+    foreach(QObject *box, newList)
+    {
+        QCheckBox *thatBox = qobject_cast<QCheckBox*>(box);
+        if (thatBox->isChecked())
+        {
+            timeSlots.append(thatBox->text());
+        }
+    }
+    Attendee attendee(ui->txtName->text(), timeSlots);
 
-//    Attendee attendee(ui->txtName->text(), );
-//    event.addAttendee(attendee.getName());
-//    ReadWrite::write(event);
-//    ui->stackedWidget->setCurrentWidget(ui->pageReturn);
+    foreach(Event e, eventList){
+        if (e.getName() == currentEvent){
+            e.addAttendee(attendee);
+            ReadWrite::write(e);
+        }
+    }
+    ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 
 void MainWindow::on_btnViewAttendanceBack_clicked()
@@ -373,9 +376,10 @@ void MainWindow::on_eventName_textChanged(/*const QString &arg1*/)
 
 }
 
-void MainWindow::on_lstListEvents_itemClicked(QListWidgetItem *item)
+void MainWindow::on_lstListEvents_itemClicked(QListWidgetItem* item)
 {
     currentEvent = item->text();
+    ui->btnListAttendanceNext->setEnabled(true);
 }
 
 void MainWindow::on_btnViewAttendanceToggle_clicked()
