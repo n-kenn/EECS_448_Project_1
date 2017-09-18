@@ -216,9 +216,34 @@ private slots:
     //Anna: I think that this is unecessary so I took it out
    // void on_eventName_textChanged(const QString &arg1);
 
+    /*!
+     * \brief on_lstListEvents_itemClicked
+     * \param item
+     *
+     * Pre: None
+     *
+     * Post: An event is selected.
+     */
     void on_lstListEvents_itemClicked(QListWidgetItem *item);
 
+    /*!
+     * \brief on_btnViewAttendanceToggle_clicked
+     *
+     * Pre: None
+     *
+     * Post: Time is converted to either 12 or 24 hour format.
+     */
     void on_btnViewAttendanceToggle_clicked();
+
+
+    /*!
+     * \brief on_btnAddAttendanceToggle_clicked
+     *
+     * Pre: None
+     *
+     * Post: Time is converted to either 12 or 24 hour format.
+     */
+    void on_btnAddAttendanceToggle_clicked();
 
 private:
     QVector<Event> eventList;
@@ -226,6 +251,8 @@ private:
     bool currentToggleNew; /*!< Keeps track of whether or not the toggle button on the pageNewTime is currently in the
                                 UTC or the AM/PM format. False represents 24 hour, and true represents 12 hour format. */
     QString currentEvent; /*!< Looks at event in lstListEvents to see which is the current Event. */
+
+    bool currentToggleAdd; /*!< Toggle flag in Add Attendance. */
 
     bool currentToggleView; /*!< Toggle flag in TableWidget */
 };

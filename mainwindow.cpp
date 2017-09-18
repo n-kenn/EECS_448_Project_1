@@ -7,7 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     currentToggleNew(false),
-    currentToggleView(false)
+    currentToggleView(false),
+    currentToggleAdd(false)
 {
     ui->setupUi(this);
     ReadWrite::read(eventList);
@@ -237,8 +238,18 @@ void MainWindow::on_btnListAttendanceNext_clicked()
                         textToCompare.replace("&", "");
                     }
                 }
-                if (time == textToCompare){
-                    thatBox->setEnabled(true);
+                if(!currentToggleAdd){
+                    if (time == textToCompare){
+                       thatBox->setEnabled(true);
+                    }
+                }
+                else{
+                    QDateTime Dtime;
+                    Dtime.setTime(QTime::fromString(time));
+                    time = (Dtime.time().toString("hh:mm:ss AP"));
+                    if (time == textToCompare){
+                        thatBox->setEnabled(true);
+                    }
                 }
             }
         }
@@ -373,4 +384,66 @@ void MainWindow::on_btnViewAttendanceToggle_clicked()
             }
         }
     }
+}
+
+void MainWindow::on_btnAddAttendanceToggle_clicked()
+{
+    QWidget* list = ui->scrollArea_2->widget();
+    QObjectList newList = list->children();
+    newList.removeFirst();
+    float timeCounter = 0;
+    foreach(QObject *box, newList){
+        QCheckBox *thatBox = qobject_cast<QCheckBox*>(box);
+        if (!currentToggleAdd){
+                QString textToConvert = thatBox->text();
+                /*Extremely odd behavior where I imagine float to String converstion produces odd & character.
+                 * These were the locations that they appeared in the string, so they are fixed accordingly.
+                */
+                if(textToConvert.contains("&")){
+                    if (textToConvert.indexOf("&") == 3){
+                        textToConvert.replace("&", "");
+
+                    }
+                    if (textToConvert.indexOf("&") == 1){
+                        textToConvert.replace("&", "");
+
+                    }
+                    if (textToConvert.indexOf("&") == 0){
+                        textToConvert.replace("&", "");
+
+                    }
+                }
+                QDateTime time;
+                time.setTime(QTime::fromString(textToConvert));
+                thatBox->setText(time.time().toString("hh:mm:ss AP"));
+        }
+        else{
+            QString timeCounterS = QString::number(timeCounter);
+                if (timeCounterS.contains(".5")){
+                    QString sTime = QString::number((int)timeCounter) + ":30";
+                    if (timeCounter < 3){
+                        sTime.prepend("0");
+                    }
+                    QDateTime time;
+                    time.setTime(QDateTime::fromString(sTime, "hh:mm").time());
+
+                    thatBox->setText(time.time().toString());
+                }
+                else{
+
+                    QString sTime = QString::number((int)timeCounter) + ":00";
+                    if (timeCounter < 3){
+                        sTime.prepend("0");
+                    }
+                    QDateTime time;
+                    time.setTime(QDateTime::fromString(sTime, "hh:mm").time());
+                    thatBox->setText(time.time().toString());
+                }
+                timeCounter += 0.5;
+        }
+    }
+    if (currentToggleAdd)
+        currentToggleAdd = false;
+    else
+        currentToggleAdd = true;
 }
