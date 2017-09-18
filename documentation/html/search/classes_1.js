@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mainwindow',['MainWindow',['../classMainWindow.html',1,'']]]
+  ['event',['Event',['../classEvent.html',1,'']]]
 ];

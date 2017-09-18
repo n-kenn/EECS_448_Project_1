@@ -41,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
         }
         timeCounter += 0.5;
         ui->gridLayout_17->addWidget(box);
+        ui->gridLayout_18->addWidget(box);
     }
 }
 
@@ -183,9 +184,49 @@ void MainWindow::on_btnListAttendanceBack_clicked()
 
 void MainWindow::on_btnListAttendanceNext_clicked()
 {
-    if(ui->rdAdd->isChecked()){
+        if(ui->rdAdd->isChecked()){
+        QWidget* list = ui->scrollArea_2->widget();
+        QObjectList newList = list->children();
+        newList.removeFirst();
+        foreach(QObject* obj, newList){
+            QCheckBox *thatBox = qobject_cast<QCheckBox*>(obj);
+            thatBox->setEnabled(false);
+        }
 
-           ui->stackedWidget->setCurrentWidget(ui->pageAddAttendance);
+
+        Event currentEventE;
+        foreach (Event e, eventList){
+            if (e.getName() == currentEvent){
+                currentEventE = e;
+                break;
+            }
+        }
+        QVector<QString> times = currentEventE.getSlots();
+        foreach(QString time, times){
+            foreach(QObject* obj, newList){
+                QCheckBox *thatBox = qobject_cast<QCheckBox*>(obj);
+                //Weird Behavior occurs here again.
+                QString textToCompare = thatBox->text();
+                if(thatBox->text().contains("&")){
+                    if (thatBox->text().indexOf("&") == 3){
+                        textToCompare.replace("&", "");
+
+                    }
+                    if (thatBox->text().indexOf("&") == 1){
+                        textToCompare.replace("&", "");
+
+                    }
+                    if (thatBox->text().indexOf("&") == 0){
+                        textToCompare.replace("&", "");
+                    }
+                }
+                if (time == textToCompare){
+                    thatBox->setEnabled(true);
+                }
+            }
+        }
+
+        ui->stackedWidget->setCurrentWidget(ui->pageAddAttendance);
        }
        else if (ui->rdView->isChecked()){
         //Zero Out Table on Page Load.

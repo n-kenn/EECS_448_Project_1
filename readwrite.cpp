@@ -32,9 +32,9 @@ void ReadWrite::write(const Event& event) {
             writeStream<<time + ",";
           else{
               if (time.left(2).toInt() < 13)
-                writeStream<<time + " AM, ";
+                writeStream<<time + " AM,";
                 else
-                      writeStream<<time + " PM, ";
+                      writeStream<<time + " PM,";
           }
       }
       writeStream << "\n";

@@ -1,28 +1,7 @@
-[event] WWE Showdown
-[creator] Randy 'the Macho Man' Savage
-[date] Wed Sep 27 2017
-[timeSlots] 09:00:00 AM, 09:30:00 AM, 10:00:00 AM, 
-[attendee] Randy 'the Macho Man' Savage
-[att_timeSlots] 
-
-[event] 12 Hous are best hours
-[creator] They Call me AMPM
-[date] Wed Apr 18 2018
-[timeSlots] 11:00:00 AM,11:30:00 AM,12:00:00 PM,
-[attendee] They Call me AMPM
-[att_timeSlots] 
-
-[event] Taking a ring to a mountain
-[creator] Frodo Baggins
-[date] Tue Dec 12 2017
-[timeSlots] 09:00:00 AM, 09:30:00 AM, 10:00:00 AM, 10:30:00 AM, 11:00:00 AM, 11:30:00 AM, 12:00:00 AM, 
-[attendee] Frodo Baggins
-[att_timeSlots] 
-
-[event] Being the last one
-[creator] Last Man Standing
-[date] Mon Sep 18 2017
-[timeSlots] 12:00:00 AM, 11:30:00 PM,
-[attendee] Last Man Standing
+[event] Josh's BBQ
+[creator] Sun Sep 17 2017
+[date] Josh
+[timeSlots] 
+[attendee] Josh
 [att_timeSlots] 
 
