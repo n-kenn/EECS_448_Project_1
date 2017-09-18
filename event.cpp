@@ -49,5 +49,5 @@ void Event::removeSlot(const QString& slot) {
 }
 
 void Event::addAttendee(const Attendee& attendee) {
-  this->attendees.push_back(attendee);
+  this->attendees.append(attendee);
 }

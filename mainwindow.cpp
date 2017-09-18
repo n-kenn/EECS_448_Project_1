@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include "readwrite.h"
 #include "attendee.h"
-
+#include <QMessageBox>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
@@ -315,16 +315,51 @@ void MainWindow::on_btnAddAttendanceSave_clicked()
         QCheckBox *thatBox = qobject_cast<QCheckBox*>(box);
         if (thatBox->isChecked())
         {
-            timeSlots.append(thatBox->text());
+            QString time = thatBox->text();
+            if(time.contains("AM"))
+            {
+                if(time.startsWith("12"))
+                {
+                    time = "00" + time.left(8).remove(0,2);
+                }
+                else
+                {
+                    time = time.left(8);
+                }
+            }
+            else if (time.contains("PM"))
+            {
+                if(time.left(2) != 12)
+                {
+                    time = QString::number(time.left(2).toInt()+12) + time.left(8).remove(0,2);
+                }
+                else
+                {
+                    time = time.left(8);
+                }
+            }
+            timeSlots.append(time);
         }
     }
     Attendee attendee(ui->txtName->text(), timeSlots);
 
     foreach(Event e, eventList){
-        if (e.getName() == currentEvent){
-            e.addAttendee(attendee);
-            ReadWrite::write(e);
+        if (e.getName().trimmed() == currentEvent.trimmed()){
+            e.addAttendee(attendee);  
         }
+
+    }
+    foreach(Event e, eventList){
+        if (e.getName().trimmed() == currentEvent.trimmed()){
+
+            foreach(Attendee a, e.getAttendees())
+            {
+                QMessageBox msgBox;
+                msgBox.setText(a.getName());
+                msgBox.exec();
+            }
+        }
+
     }
     ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
