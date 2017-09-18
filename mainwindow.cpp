@@ -112,7 +112,7 @@ void MainWindow::on_btnNewTimeSave_clicked()
             }
             else if (time.contains("PM"))
             {
-                if(time.left(2) != 12)
+                if(time.left(2) != QString::number(12))
                 {
                     time = QString::number(time.left(2).toInt()+12) + time.left(8).remove(0,2);
                 }
@@ -346,7 +346,7 @@ void MainWindow::on_btnAddAttendanceSave_clicked()
             }
             else if (time.contains("PM"))
             {
-                if(time.left(2) != 12)
+                if(time.left(2) != QString::number(12))
                 {
                     time = QString::number(time.left(2).toInt()+12) + time.left(8).remove(0,2);
                 }
@@ -477,7 +477,7 @@ void MainWindow::on_btnViewAttendanceToggle_clicked()
                                 }
                                 else if (time.contains("PM"))
                                 {
-                                    if(time.left(2) != 12)
+                                    if(time.left(2) != QString::number(12))
                                     {
                                         time = QString::number(time.left(2).toInt()+12) + time.left(8).remove(0,2);
                                     }
