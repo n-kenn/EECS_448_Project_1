@@ -6,9 +6,11 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    currentToggleNew(false)
+    currentToggleNew(false),
+    currentToggleView(false)
 {
     ui->setupUi(this);
+    ReadWrite::read(eventList);
     float timeCounter = 0;
     for (int i = 0; i < 48; i++){
         QCheckBox *box = new QCheckBox;
@@ -40,26 +42,17 @@ MainWindow::MainWindow(QWidget *parent) :
         timeCounter += 0.5;
         ui->gridLayout_17->addWidget(box);
     }
-    //Test Code for table widget of pageViewAttendance
-    QVector<QString> times;
-    QString time = "Nonya";
-    times.append(time);
-
-    for (int i = 0; i < 10; i++){
-        Event event("Test Name " +QString::number(i), QString::number(i),"Josh, the literal Event Creator", times);
-        Attendee att("Mark", times), att2("Steven", times);
-        event.addAttendee(att);
-        event.addAttendee(att2);
-        eventList.append(event);
-    }
-    //End of Test Code
-
 }
 
 MainWindow::~MainWindow()
 {
+    foreach (Event e, eventList)
+    {
+        ReadWrite::write(e);
+    }
     delete ui;
 }
+
 
 void MainWindow::on_btnNew_clicked()
 {
@@ -107,7 +100,7 @@ void MainWindow::on_btnNewTimeSave_clicked()
     Attendee creator(ui->txtName->text(), timeSlots);
     event.addAttendee(creator);
     eventList.append(event);
-    ReadWrite::write(event);
+
     ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 
@@ -221,10 +214,10 @@ void MainWindow::on_btnListAttendanceNext_clicked()
         //Set Row Count for the amount of attendees, and read everything into the table.
         ui->tableWidget->setRowCount(currentEventE.getAttendees().count() + 1);
         ui->tableWidget->setCurrentCell(1,0);
-        for (Attendee a: currentEventE.getAttendees()){
+        foreach (Attendee a, currentEventE.getAttendees()){
              QString allSlots;
              QTableWidgetItem *newAtt = new QTableWidgetItem(a.getName());
-             for (QString time: a.getSlots()){
+             foreach(QString time, a.getSlots()){
                  allSlots.append(time + " ");
              }
              QTableWidgetItem *newTim = new QTableWidgetItem(allSlots);
@@ -245,10 +238,11 @@ void MainWindow::on_btnAddAttendanceBack_clicked()
 
 void MainWindow::on_btnAddAttendanceSave_clicked()
 {
-
 //    Attendee attendee(ui->txtName->text(), );
-//    event.addAttendee(attendee.getName());
-//    ReadWrite::write(event);
+//    foreach(Event e, eventList) {
+//        if (e.getName() == currentEvent)
+//            e.addAttendee(attendee);
+//    }
 //    ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 
@@ -306,8 +300,20 @@ void MainWindow::on_eventName_textChanged(/*const QString &arg1*/)
 
 }
 
-void MainWindow::on_lstListEvents_itemClicked(QListWidgetItem *item)
+void MainWindow::on_lstListEvents_itemClicked(QListWidgetItem* item)
 {
     currentEvent = item->text();
 }
 
+void MainWindow::on_btnViewAttendanceToggle_clicked()
+{
+    if(ui->tableWidget->rowCount() != 1){
+        for(int i = 1; i < ui->tableWidget->rowCount(); i++){
+            QTableWidgetItem* item = ui->tableWidget->item(i, 1);
+            QList<QString> itemS = item->text().split(" ");
+            foreach(QString time, itemS){
+                //Add Conversion code here. A toggle is already in place called currentToggleView
+            }
+        }
+    }
+}

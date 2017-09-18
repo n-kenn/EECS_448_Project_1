@@ -2,6 +2,7 @@
 #include "readwrite.h"
 #include <QFile>
 #include <QTextStream>
+#include <QMessageBox> //for debug
 
 ReadWrite::ReadWrite(){
     //empty constructor
@@ -20,22 +21,93 @@ void ReadWrite::write(const Event& event) {
       writeStream<< "[creator] " + event.getCreator() + "\n";
       writeStream<< "[date] " + event.getDate() + "\n";
       writeStream<< "[timeSlots] ";
-      foreach(QString time, event.getSlots())
-      {
-          writeStream<<time + ",";
+      foreach(QString time, event.getSlots()){
+          if (time.left(2).toInt() == 0){
+              time.remove(0, 2);
+              time.prepend(QString::number(12));
+          }
+          if (time.left(2).toInt() > 12)
+              time = QString::number((time.left(2).toInt()-12)) + time.right(6) + " PM";
+          if (time.contains("AM") || time.contains("PM"))
+            writeStream<<time + ",";
+          else{
+              if (time.left(2).toInt() < 13)
+                writeStream<<time + " AM, ";
+                else
+                      writeStream<<time + " PM, ";
+          }
       }
-      writeStream<< "\n\n";
+      writeStream << "\n";
+      if (event.getAttendees().size() > 0)
+      {
+          foreach(Attendee att, event.getAttendees())
+          {
+              writeStream<<"[attendee] " + att.getName() + "\n";
+              writeStream<<"[att_timeSlots] ";
+              writeStream<< "\n\n";
+            }
+        file.close();
+        }
   }
-  file.close();
 }
 
-QString ReadWrite::read() {
+void ReadWrite::read(QVector<Event>& eventList) {
   QFile file("eventlist.txt");
   QString lines = "test";
-  if(file.open(QIODevice::ReadOnly)) {
+  QString eventName;
+  QString creatorName;
+  QString date;
+  QString times;
+  QVector<QString> timeSlots;
+
+  QString att_name;
+  QString att_times;
+
+  if(file.open(QIODevice::ReadOnly))
+  {
+
+
+
       QTextStream readStream(&file);
-      lines = readStream.readAll();
-      file.close();
-  }
-  return lines;
+      while (!readStream.atEnd())
+      {
+          lines = readStream.readLine();
+          if (lines.indexOf("[event]") == 0)
+          {
+              eventName = lines.right(lines.size()-8);
+              lines = readStream.readLine();
+              creatorName = lines.right(lines.size()-10);
+              lines = readStream.readLine();
+              date = lines.right(lines.size()-7);
+              lines = readStream.readLine();
+              times = lines.right(lines.size()-12);
+              foreach (QString time, times.split(",")) {
+                 timeSlots.append(time);
+              }
+              timeSlots.removeLast();
+              Event newEvent(eventName, creatorName, date, timeSlots);
+              timeSlots.clear();
+              lines = readStream.readLine();
+              while (lines.startsWith("[attendee] "))
+              {
+
+                  att_name = lines.right(lines.size()-11);
+                  lines = readStream.readLine();
+                  att_times = lines.right(lines.size()-16);
+                  foreach (QString time, times.split(",")) {
+                     timeSlots.append(time);
+                  }
+                  timeSlots.removeLast();
+                  Attendee att(att_name, timeSlots);
+                  newEvent.addAttendee(att);
+                  lines = readStream.readLine();
+                  timeSlots.clear();
+              }
+
+              eventList.append(newEvent);
+
+          }
+       }
+      file.remove();
+    }
 }
