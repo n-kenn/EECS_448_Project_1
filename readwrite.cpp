@@ -22,6 +22,10 @@ void ReadWrite::write(const Event& event) {
       writeStream<< "[date] " + event.getDate() + "\n";
       writeStream<< "[timeSlots] ";
       foreach(QString time, event.getSlots()){
+          if (time.left(2).toInt() == 0){
+              time.remove(0, 2);
+              time.prepend(QString::number(12));
+          }
           if (time.left(2).toInt() > 12)
               time = QString::number((time.left(2).toInt()-12)) + time.right(6) + " PM";
           if (time.contains("AM") || time.contains("PM"))

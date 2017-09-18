@@ -1,14 +1,35 @@
 [event] Josh's Event
-[creator] Sun Sep 17 2017
-[date] Josh
-[timeSlots] 00:00:00 AM, 06:00:00 AM, -12:00:00 AM, -12:00:00 AM,
+[creator] Josh
+[date] Sun Sep 17 2017
+[timeSlots] 120:00 AM12,1200:00 AM12,12:00:00 AM12,12:00:00 AM12,
 [attendee] Josh
 [att_timeSlots] 
 
 [event] Joshs' eeeevent
+[creator] Sun Sep 17 2017
+[date] Josh
+[timeSlots] 120:00 AM12, 1:00:00 PM,12:00 PM12,
+[attendee] Josh
+[att_timeSlots] 
+
+[event] Bar B Q
 [creator] Josh
 [date] Sun Sep 17 2017
-[timeSlots] 00:00:00 AM, 1:00:00 PM,8:00:00 PM,
+[timeSlots] 120:00 AM12,
 [attendee] Josh
+[att_timeSlots] 
+
+[event] josh oertel
+[creator] Sun Sep 17 2017
+[date] Oertel
+[timeSlots] 120:0012 AM,
+[attendee] Oertel
+[att_timeSlots] 
+
+[event] Josh Oertel
+[creator] Josh Oertel
+[date] Sun Sep 17 2017
+[timeSlots] 12:00:00 AM, 
+[attendee] Josh Oertel
 [att_timeSlots] 
 
