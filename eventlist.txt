@@ -1,7 +1,0 @@
-[event] Josh's BBQ
-[creator] Sun Sep 17 2017
-[date] Josh
-[timeSlots] 
-[attendee] Josh
-[att_timeSlots] 
-
