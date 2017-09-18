@@ -7,7 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     currentToggleNew(false),
-    currentToggleView(false)
+    currentToggleView(false),
+    currentToggleAdd(false)
 {
     ui->setupUi(this);
     ReadWrite::read(eventList);
@@ -247,8 +248,18 @@ void MainWindow::on_btnListAttendanceNext_clicked()
                         textToCompare.replace("&", "");
                     }
                 }
-                if (time == textToCompare){
-                    thatBox->setEnabled(true);
+                if(!currentToggleAdd){
+                    if (time == textToCompare){
+                       thatBox->setEnabled(true);
+                    }
+                }
+                else{
+                    QDateTime Dtime;
+                    Dtime.setTime(QTime::fromString(time));
+                    time = (Dtime.time().toString("hh:mm:ss AP"));
+                    if (time == textToCompare){
+                        thatBox->setEnabled(true);
+                    }
                 }
             }
         }
@@ -285,8 +296,14 @@ void MainWindow::on_btnListAttendanceNext_clicked()
         foreach (Attendee a, currentEventE.getAttendees()){
              QString allSlots;
              QTableWidgetItem *newAtt = new QTableWidgetItem(a.getName());
-             foreach(QString time, a.getSlots()){
-                 allSlots.append(time + " ");
+             for (QString time: a.getSlots()){
+                 if (a.getSlots().indexOf(time) != a.getSlots().count() - 1){
+                 allSlots.append(time + ",");
+                 }
+                 else{
+                     allSlots.append(time);
+                 }
+
              }
              QTableWidgetItem *newTim = new QTableWidgetItem(allSlots);
              ui->tableWidget->setItem(ui->tableWidget->currentRow(),0,newAtt);
@@ -413,6 +430,7 @@ void MainWindow::on_eventName_textChanged(/*const QString &arg1*/)
 void MainWindow::on_lstListEvents_itemClicked(QListWidgetItem* item)
 {
     currentEvent = item->text();
+    ui->btnListAttendanceNext->setEnabled(true);
 }
 
 void MainWindow::on_btnViewAttendanceToggle_clicked()
@@ -420,10 +438,131 @@ void MainWindow::on_btnViewAttendanceToggle_clicked()
     if(ui->tableWidget->rowCount() != 1){
         for(int i = 1; i < ui->tableWidget->rowCount(); i++){
             QTableWidgetItem* item = ui->tableWidget->item(i, 1);
-            QList<QString> itemS = item->text().split(" ");
+            QList<QString> itemS = item->text().split(",");
+            QString newTime;
+            float timeCounter = 0;
             foreach(QString time, itemS){
-                //Add Conversion code here. A toggle is already in place called currentToggleView
-            }
+                if(time.contains("&")){
+                    if (time.indexOf("&") == 3){
+                        time.replace("&", "");
+
+                    }
+                    if (time.indexOf("&") == 1){
+                        time.replace("&", "");
+
+                    }
+                    if (time.indexOf("&") == 0){
+                        time.replace("&", "");
+
+                    }
+                }
+                if(!currentToggleView){
+                    QDateTime Dtime;
+                    Dtime.setTime(QTime::fromString(time));
+                        newTime.append(Dtime.time().toString("hh:mm:ss AP"));
+                        newTime.append(",");
+
+                }
+                else{
+                    if(time.contains("AM"))
+                                {
+                                    if(time.startsWith("12"))
+                                    {
+                                        time = "00" + time.left(8).remove(0,2);
+                                    }
+                                    else
+                                    {
+                                        time = time.left(8);
+                                    }
+                                }
+                                else if (time.contains("PM"))
+                                {
+                                    if(time.left(2) != 12)
+                                    {
+                                        time = QString::number(time.left(2).toInt()+12) + time.left(8).remove(0,2);
+                                    }
+                                    else
+                                    {
+                                        time = time.left(8);
+                                    }
+                                }
+
+
+                        newTime.append(time);
+                        newTime.append(",");
+                }
+
+
+        }
+            newTime.chop(1);
+            QTableWidgetItem *newTim = new QTableWidgetItem(newTime);
+            ui->tableWidget->setItem(i, 1, newTim);
+    }
+    if (currentToggleView)
+        currentToggleView = false;
+    else
+        currentToggleView = true;
+    }
+}
+
+void MainWindow::on_btnAddAttendanceToggle_clicked()
+{
+    QWidget* list = ui->scrollArea_2->widget();
+    QObjectList newList = list->children();
+    newList.removeFirst();
+    float timeCounter = 0;
+    foreach(QObject *box, newList){
+        QCheckBox *thatBox = qobject_cast<QCheckBox*>(box);
+        if (!currentToggleAdd){
+                QString textToConvert = thatBox->text();
+                /*Extremely odd behavior where I imagine float to String converstion produces odd & character.
+                 * These were the locations that they appeared in the string, so they are fixed accordingly.
+                */
+                if(textToConvert.contains("&")){
+                    if (textToConvert.indexOf("&") == 3){
+                        textToConvert.replace("&", "");
+
+                    }
+                    if (textToConvert.indexOf("&") == 1){
+                        textToConvert.replace("&", "");
+
+                    }
+                    if (textToConvert.indexOf("&") == 0){
+                        textToConvert.replace("&", "");
+
+                    }
+                }
+                QDateTime time;
+                time.setTime(QTime::fromString(textToConvert));
+                thatBox->setText(time.time().toString("hh:mm:ss AP"));
+        }
+        else{
+            QString timeCounterS = QString::number(timeCounter);
+                if (timeCounterS.contains(".5")){
+                    QString sTime = QString::number((int)timeCounter) + ":30";
+                    if (timeCounter < 3){
+                        sTime.prepend("0");
+                    }
+                    QDateTime time;
+                    time.setTime(QDateTime::fromString(sTime, "hh:mm").time());
+
+                    thatBox->setText(time.time().toString());
+                }
+                else{
+
+                    QString sTime = QString::number((int)timeCounter) + ":00";
+                    if (timeCounter < 3){
+                        sTime.prepend("0");
+                    }
+                    QDateTime time;
+                    time.setTime(QDateTime::fromString(sTime, "hh:mm").time());
+                    thatBox->setText(time.time().toString());
+                }
+                timeCounter += 0.5;
         }
     }
+    if (currentToggleAdd)
+        currentToggleAdd = false;
+    else
+        currentToggleAdd = true;
 }

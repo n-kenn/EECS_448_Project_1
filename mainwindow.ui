@@ -337,8 +337,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>1106</width>
-               <height>568</height>
+               <width>96</width>
+               <height>26</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_17"/>
@@ -413,12 +413,15 @@
             <property name="text">
              <string>Add Attendance</string>
             </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
           <item row="2" column="2" colspan="2">
            <widget class="QPushButton" name="btnListAttendanceNext">
             <property name="enabled">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <property name="toolTip">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Depending on which radio button you have selected, you will go to a different place in the program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -562,8 +565,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>1240</width>
-               <height>601</height>
+               <width>96</width>
+               <height>26</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_18"/>

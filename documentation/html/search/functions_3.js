@@ -2,6 +2,7 @@ var searchData=
 [
   ['on_5fbtnaddattendanceback_5fclicked',['on_btnAddAttendanceBack_clicked',['../classMainWindow.html#a953a3036215f56f8bb41bd3c8e17fc3d',1,'MainWindow']]],
   ['on_5fbtnaddattendancesave_5fclicked',['on_btnAddAttendanceSave_clicked',['../classMainWindow.html#ad542eebc9e83557f5b51f0c3b07a027f',1,'MainWindow']]],
+  ['on_5fbtnaddattendancetoggle_5fclicked',['on_btnAddAttendanceToggle_clicked',['../classMainWindow.html#a1725cd88569cbbf79197905030773b8c',1,'MainWindow']]],
   ['on_5fbtnexit_5fclicked',['on_btnExit_clicked',['../classMainWindow.html#a21a296f80cd77f1d88818b8dfe513755',1,'MainWindow']]],
   ['on_5fbtnlistattendanceback_5fclicked',['on_btnListAttendanceBack_clicked',['../classMainWindow.html#aeb2c93422d5edea5a37cdd98a1a22912',1,'MainWindow']]],
   ['on_5fbtnlistattendancenext_5fclicked',['on_btnListAttendanceNext_clicked',['../classMainWindow.html#ace8c6a3ce24037e34ffa8f5323cf35aa',1,'MainWindow']]],
@@ -16,6 +17,8 @@ var searchData=
   ['on_5fbtnviewattendanceback_5fclicked',['on_btnViewAttendanceBack_clicked',['../classMainWindow.html#a8c2c58cf286c536dd48f6cf1ad89a251',1,'MainWindow']]],
   ['on_5fbtnviewattendancequit_5fclicked',['on_btnViewAttendanceQuit_clicked',['../classMainWindow.html#a4bc0fcf5bbe0847bebb64cc8b5430d8f',1,'MainWindow']]],
   ['on_5fbtnviewattendancereturn_5fclicked',['on_btnViewAttendanceReturn_clicked',['../classMainWindow.html#a8d1f47528a76bc13fbb609931e59ecdd',1,'MainWindow']]],
+  ['on_5fbtnviewattendancetoggle_5fclicked',['on_btnViewAttendanceToggle_clicked',['../classMainWindow.html#a21de266fbbd9912166e13ae7cd18fffc',1,'MainWindow']]],
+  ['on_5flstlistevents_5fitemclicked',['on_lstListEvents_itemClicked',['../classMainWindow.html#a7106de0be508fdbc204fa71a1e17ec29',1,'MainWindow']]],
   ['on_5frdadd_5fclicked',['on_rdAdd_clicked',['../classMainWindow.html#a1faa1cf35649ef2356199f6502cedbc0',1,'MainWindow']]],
   ['on_5frdview_5fclicked',['on_rdView_clicked',['../classMainWindow.html#a5fbbffb1b3b1ec8cb216d7a7163c25aa',1,'MainWindow']]],
   ['on_5ftxtname_5ftextchanged',['on_txtName_textChanged',['../classMainWindow.html#a97a7f27dc27e0787635a94e36ff2d2a5',1,'MainWindow']]]
