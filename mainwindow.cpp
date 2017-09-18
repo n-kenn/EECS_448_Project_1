@@ -42,20 +42,6 @@ MainWindow::MainWindow(QWidget *parent) :
         timeCounter += 0.5;
         ui->gridLayout_17->addWidget(box);
     }
-    /*/Test Code for table widget of pageViewAttendance
-    QVector<QString> times;
-    QString time = "14:00";
-    times.append(time);
-
-    for (int i = 0; i < 10; i++){
-        Event event("Test Name " +QString::number(i), QString::number(i),"Josh, the literal Event Creator", times);
-        Attendee att("Mark", times), att2("Steven", times);
-        event.addAttendee(att);
-        event.addAttendee(att2);
-        eventList.append(event);
-    }
-    //End of Test Code*/
-
 }
 
 MainWindow::~MainWindow()
@@ -228,10 +214,10 @@ void MainWindow::on_btnListAttendanceNext_clicked()
         //Set Row Count for the amount of attendees, and read everything into the table.
         ui->tableWidget->setRowCount(currentEventE.getAttendees().count() + 1);
         ui->tableWidget->setCurrentCell(1,0);
-        for (Attendee a: currentEventE.getAttendees()){
+        foreach (Attendee a, currentEventE.getAttendees()){
              QString allSlots;
              QTableWidgetItem *newAtt = new QTableWidgetItem(a.getName());
-             for (QString time: a.getSlots()){
+             foreach(QString time, a.getSlots()){
                  allSlots.append(time + " ");
              }
              QTableWidgetItem *newTim = new QTableWidgetItem(allSlots);
@@ -252,10 +238,11 @@ void MainWindow::on_btnAddAttendanceBack_clicked()
 
 void MainWindow::on_btnAddAttendanceSave_clicked()
 {
-
 //    Attendee attendee(ui->txtName->text(), );
-//    event.addAttendee(attendee.getName());
-//    ReadWrite::write(event);
+//    foreach(Event e, eventList) {
+//        if (e.getName() == currentEvent)
+//            e.addAttendee(attendee);
+//    }
 //    ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 
@@ -313,7 +300,7 @@ void MainWindow::on_eventName_textChanged(/*const QString &arg1*/)
 
 }
 
-void MainWindow::on_lstListEvents_itemClicked(QListWidgetItem *item)
+void MainWindow::on_lstListEvents_itemClicked(QListWidgetItem* item)
 {
     currentEvent = item->text();
 }
