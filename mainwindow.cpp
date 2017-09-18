@@ -288,7 +288,6 @@ void MainWindow::on_rdView_clicked()
 
 void MainWindow::on_eventName_textChanged(/*const QString &arg1*/)
 {
-
     if (ui->txtName->text() == ""){
         ui->btnNewDateBack->setEnabled(true);
         ui->btnNewDateNext->setEnabled(false);
