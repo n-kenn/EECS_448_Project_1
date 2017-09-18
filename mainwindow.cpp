@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     float timeCounter = 0;
     for (int i = 0; i < 48; i++){
         QCheckBox *box = new QCheckBox;
+        QCheckBox *box2 = new QCheckBox;
         if (QString::number(timeCounter).contains(".5")){
             QString sTime = QString::number((int)timeCounter) + ":30";
             if (timeCounter < 3){
@@ -25,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
                 QMessageBox::information(this, "This: ", sTime);
             }
             box->setText(time.time().toString());
+            box2->setText(time.time().toString());
         }
         else{
 
@@ -38,10 +40,11 @@ MainWindow::MainWindow(QWidget *parent) :
                 QMessageBox::information(this, "This: ", sTime);
             }
             box->setText(time.time().toString());
+            box2->setText(time.time().toString());
         }
         timeCounter += 0.5;
         ui->gridLayout_17->addWidget(box);
-        ui->gridLayout_18->addWidget(box);
+        ui->gridLayout_18->addWidget(box2);
     }
     /*/Test Code for table widget of pageViewAttendance
     QVector<QString> times;
