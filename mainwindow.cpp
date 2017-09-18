@@ -282,12 +282,27 @@ void MainWindow::on_btnAddAttendanceBack_clicked()
 
 void MainWindow::on_btnAddAttendanceSave_clicked()
 {
-//    Attendee attendee(ui->txtName->text(), );
-//    foreach(Event e, eventList) {
-//        if (e.getName() == currentEvent)
-//            e.addAttendee(attendee);
-//    }
-//    ui->stackedWidget->setCurrentWidget(ui->pageReturn);
+    QVector<QString> timeSlots;
+    QWidget* list = ui->scrollArea_2->widget();
+    QObjectList newList = list->children();
+    newList.removeFirst(); //Removes the Grid from the list.
+    foreach(QObject *box, newList)
+    {
+        QCheckBox *thatBox = qobject_cast<QCheckBox*>(box);
+        if (thatBox->isChecked())
+        {
+            timeSlots.append(thatBox->text());
+        }
+    }
+    Attendee attendee(ui->txtName->text(), timeSlots);
+
+    foreach(Event e, eventList){
+        if (e.getName() == currentEvent){
+            e.addAttendee(attendee);
+            ReadWrite::write(e);
+        }
+    }
+    ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 
 void MainWindow::on_btnViewAttendanceBack_clicked()
