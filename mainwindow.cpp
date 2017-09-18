@@ -342,25 +342,17 @@ void MainWindow::on_btnAddAttendanceSave_clicked()
         }
     }
     Attendee attendee(ui->txtName->text(), timeSlots);
-
+    Event CurrentEventE;
     foreach(Event e, eventList){
         if (e.getName().trimmed() == currentEvent.trimmed()){
-            e.addAttendee(attendee);  
+             CurrentEventE = e;
+             break;
         }
 
     }
-    foreach(Event e, eventList){
-        if (e.getName().trimmed() == currentEvent.trimmed()){
-
-            foreach(Attendee a, e.getAttendees())
-            {
-                QMessageBox msgBox;
-                msgBox.setText(a.getName());
-                msgBox.exec();
-            }
-        }
-
-    }
+    CurrentEventE.addAttendee(attendee);
+    eventList.removeLast();
+    eventList.append(CurrentEventE);
     ui->stackedWidget->setCurrentWidget(ui->pageReturn);
 }
 
