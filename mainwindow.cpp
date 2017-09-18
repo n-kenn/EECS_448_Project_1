@@ -391,7 +391,6 @@ void MainWindow::on_btnViewAttendanceToggle_clicked()
             QString newTime;
             float timeCounter = 0;
             foreach(QString time, itemS){
-                QMessageBox::information(this, "", time);
                 if(time.contains("&")){
                     if (time.indexOf("&") == 3){
                         time.replace("&", "");
