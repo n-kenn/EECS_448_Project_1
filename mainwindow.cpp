@@ -111,7 +111,31 @@ void MainWindow::on_btnNewTimeSave_clicked()
         QCheckBox *thatBox = qobject_cast<QCheckBox*>(box);
         if (thatBox->isChecked())
         {
-            timeSlots.append(thatBox->text());
+            QString time = thatBox->text();
+            if(time.contains("AM"))
+            {
+                if(time.startsWith("12"))
+                {
+                    time = "00" + time.left(8).remove(0,2);
+                }
+                else
+                {
+                    time = time.left(8);
+                }
+            }
+            else if (time.contains("PM"))
+            {
+                if(time.left(2) != 12)
+                {
+                    time = QString::number(time.left(2).toInt()+12) + time.left(8).remove(0,2);
+                }
+                else
+                {
+                    time = time.left(8);
+                }
+            }
+
+            timeSlots.append(time);
         }
     }
     Event event(ui->eventName->text(), ui->calendarWidget->selectedDate().toString(), ui->txtName->text(), timeSlots);
