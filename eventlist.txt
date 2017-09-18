@@ -1,35 +1,28 @@
-[event] Josh's Event
-[creator] Josh
-[date] Sun Sep 17 2017
-[timeSlots] 120:00 AM12,1200:00 AM12,12:00:00 AM12,12:00:00 AM12,
-[attendee] Josh
+[event] WWE Showdown
+[creator] Randy 'the Macho Man' Savage
+[date] Wed Sep 27 2017
+[timeSlots] 09:00:00 AM, 09:30:00 AM, 10:00:00 AM, 
+[attendee] Randy 'the Macho Man' Savage
 [att_timeSlots] 
 
-[event] Joshs' eeeevent
-[creator] Sun Sep 17 2017
-[date] Josh
-[timeSlots] 120:00 AM12, 1:00:00 PM,12:00 PM12,
-[attendee] Josh
+[event] 12 Hous are best hours
+[creator] They Call me AMPM
+[date] Wed Apr 18 2018
+[timeSlots] 11:00:00 AM,11:30:00 AM,12:00:00 PM,
+[attendee] They Call me AMPM
 [att_timeSlots] 
 
-[event] Bar B Q
-[creator] Josh
-[date] Sun Sep 17 2017
-[timeSlots] 120:00 AM12,
-[attendee] Josh
+[event] Taking a ring to a mountain
+[creator] Frodo Baggins
+[date] Tue Dec 12 2017
+[timeSlots] 09:00:00 AM, 09:30:00 AM, 10:00:00 AM, 10:30:00 AM, 11:00:00 AM, 11:30:00 AM, 12:00:00 AM, 
+[attendee] Frodo Baggins
 [att_timeSlots] 
 
-[event] josh oertel
-[creator] Sun Sep 17 2017
-[date] Oertel
-[timeSlots] 120:0012 AM,
-[attendee] Oertel
-[att_timeSlots] 
-
-[event] Josh Oertel
-[creator] Josh Oertel
-[date] Sun Sep 17 2017
-[timeSlots] 12:00:00 AM, 
-[attendee] Josh Oertel
+[event] Being the last one
+[creator] Last Man Standing
+[date] Mon Sep 18 2017
+[timeSlots] 12:00:00 AM, 11:30:00 PM,
+[attendee] Last Man Standing
 [att_timeSlots] 
 
