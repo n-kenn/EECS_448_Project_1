@@ -362,6 +362,7 @@ void MainWindow::on_eventName_textChanged(/*const QString &arg1*/)
 void MainWindow::on_lstListEvents_itemClicked(QListWidgetItem* item)
 {
     currentEvent = item->text();
+    ui->btnListAttendanceNext->setEnabled(true);
 }
 
 void MainWindow::on_btnViewAttendanceToggle_clicked()
