@@ -337,8 +337,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>1097</width>
-               <height>554</height>
+               <width>16</width>
+               <height>16</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_17"/>
@@ -531,9 +531,6 @@
             </property>
            </spacer>
           </item>
-          <item row="1" column="0" colspan="6">
-           <widget class="QListWidget" name="listWidget_2"/>
-          </item>
           <item row="3" column="4">
            <widget class="QPushButton" name="btnAddAttendanceSave">
             <property name="text">
@@ -553,6 +550,24 @@
             <property name="text">
              <string>Select Available Times</string>
             </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="5">
+           <widget class="QScrollArea" name="scrollArea_2">
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>1250</width>
+               <height>596</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_18"/>
+            </widget>
            </widget>
           </item>
          </layout>
